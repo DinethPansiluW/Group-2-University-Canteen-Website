@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact - Taste of Ruhuna</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Colours taken from the Taste of Ruhuna design */
+  :root {
+    --dark: #2b1a10;      /* headings, owner button */
+    --brown: #7a4a1e;     /* accent text and buttons */
+    --cream: #fdf3dc;     /* soft card background */
+    --yellow: #fbdc7a;    /* badges */
+    --line: #eadfc8;      /* borders */
+    --text: #6b5a4c;      /* normal text */
+  }
+
+  body { margin: 0; font-family: "DM Sans", Arial, sans-serif; color: var(--text); background: #fff; }
+  h1, h2, h3, .logo { font-family: "Bricolage Grotesque", Arial, sans-serif; color: var(--dark); }
+
+  /* ---------- Top menu ---------- */
+  .navbar { display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 40px; border-bottom: 1px solid var(--line); flex-wrap: wrap; gap: 10px; }
+  .logo { font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+  .logo span { color: var(--brown); }
+  .crest { width: 34px; height: 34px; border-radius: 50%; background: var(--brown);
+           border: 3px solid #e3a93a; display: inline-block; }
+  .links a { margin: 0 14px; text-decoration: none; color: var(--dark); font-weight: 500; font-size: 14px; padding-bottom: 6px; }
+  .links a.active { color: var(--brown); border-bottom: 2px solid var(--brown); }
+  .right { display: flex; align-items: center; gap: 14px; }
+  .cart { background: var(--cream); border-radius: 12px; padding: 10px 14px; position: relative; }
+  .cart b { position: absolute; top: -6px; right: -6px; background: var(--yellow); color: var(--dark);
+            font-size: 11px; border-radius: 50%; width: 18px; height: 18px; text-align: center; line-height: 18px; }
+  .owner { background: var(--dark); color: #fff; padding: 11px 18px; border-radius: 10px; font-weight: 700; font-size: 14px; }
+
+  /* ---------- Heading area ---------- */
+  .wrap { max-width: 1010px; margin: 0 auto; padding: 0 20px; }
+  .hero { padding: 50px 0 30px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--dark); }
+  .eyebrow::before { content: ""; display: inline-block; width: 9px; height: 9px; background: #f0b429;
+                     border-radius: 50%; margin-right: 8px; }
+  .hero h1 { font-size: 56px; line-height: 1.05; margin: 14px 0; font-weight: 800; letter-spacing: -1px; }
+  .hero h1 span { color: var(--brown); }
+  .hero p { max-width: 460px; line-height: 1.7; font-size: 16px; margin: 0; }
+
+  /* ---------- Two boxes side by side ---------- */
+  .page { display: flex; gap: 24px; padding-bottom: 50px; }
+  .card { flex: 1; background: #fff; border: 1.5px solid var(--line); border-radius: 18px; padding: 26px;
+          box-shadow: 0 8px 24px rgba(122, 74, 30, 0.07); }
+  .card h2 { margin: 0 0 6px; font-size: 26px; font-weight: 800; }
+  .card .sub { margin: 0 0 18px; font-size: 14px; }
+
+  label { font-weight: 700; font-size: 14px; color: var(--dark); }
+  input, textarea { width: 100%; padding: 12px; margin: 6px 0 16px; box-sizing: border-box; font-family: inherit;
+                    font-size: 15px; border: 1.5px solid var(--line); border-radius: 10px; background: #fffdf8; }
+  input:focus, textarea:focus { outline: none; border-color: var(--brown); }
+  button { background: var(--brown); color: #fff; border: none; padding: 13px 26px; border-radius: 10px;
+           font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer; }
+  button:hover { background: var(--dark); }
+  #message { color: #2e7d4f; font-weight: 700; }
+
+  /* Info rows with yellow icon badges */
+  .item { display: flex; gap: 14px; align-items: center; background: var(--cream); border-radius: 14px;
+          padding: 14px; margin-bottom: 12px; }
+  .icon { background: var(--yellow); width: 42px; height: 42px; border-radius: 12px; text-align: center;
+          line-height: 42px; font-size: 20px; flex-shrink: 0; }
+  .item b { color: var(--dark); display: block; font-size: 15px; }
+  .item small { font-size: 13px; }
+  .item a { color: var(--brown); font-weight: 700; }
+
+  @media (max-width: 760px) {
+    .page { flex-direction: column; }
+    .hero h1 { font-size: 38px; }
+    .navbar { padding: 14px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top menu -->
+<div class="navbar">
+  <div class="logo"><span class="crest"></span>Taste of <span>Ruhuna</span></div>
+  <div class="links">
+    <a href="#">Home</a>
+    <a href="#">Canteens</a>
+    <a href="#">Menu</a>
+    <a href="#">Orders</a>
+    <a href="#" class="active">Contact</a>
+  </div>
+  <div class="right">
+    <div class="cart">🛒<b>0</b></div>
+    <div class="owner">Owner panel</div>
+  </div>
+</div>
+
+<!-- Heading -->
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">රුහුණ විශ්වවිද්‍යාලය · Matara</div>
+    <h1>Questions? <br><span>We are on the hill.</span></h1>
+    <p>Contact the Canteens, University of Ruhuna. Ask about food, allergies, events or send us your feedback.</p>
+  </div>
+
+  <div class="page">
+
+    <!-- Left: form -->
+    <div class="card">
+      <h2>Send a message</h2>
+      <p class="sub">We reply within one working day.</p>
+
+      <label>Name</label>
+      <input type="text" id="name" placeholder="Your name">
+
+      <label>Email</label>
+      <input type="email" id="email" placeholder="you@example.com">
+
+      <label>Message</label>
+      <textarea id="text" rows="5" placeholder="Write your message..."></textarea>
+
+      <button onclick="sendMessage()">Send message</button>
+      <p id="message"></p>
+    </div>
+
+    <!-- Right: details -->
+    <div class="card">
+      <h2>Find us</h2>
+      <p class="sub">Canteens, University of Ruhuna, Sri Lanka</p>
+
+      <div class="item">
+        <div class="icon">📍</div>
+        <div><b>Location</b><small> Science Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
+        <small><a href="https://www.google.com/maps/place/Faculty+of+Science+-+University+of+Ruhuna/@5.9393747,80.5770322,21z/data=!4m10!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m6!1s0x3ae1391b54d711c3:0x32cf0450fac521e3!8m2!3d5.939459!4d80.5771375!15sCi5GYWN1bHR5IG9mIFNjaWVuY2UgVW5pdmVyc2l0eSBvZiBSdWh1bmEgTWF0YXJhkgEKdW5pdmVyc2l0eeABAA!16s%2Fg%2F11gczw2nm0?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Science Canteen</a></small></div>
+        <div class="icon">📍</div>
+        <div><b>Location</b><small> Art Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
+        <small><a href="https://www.google.com/maps/place/WHQG%2B9RM+Art+Faculty+Canteen,+University+of+Ruhuna,+A2,+Matara/@5.9390946,80.5759218,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae1391b4ae09319:0x4b7e2c874e86d315!8m2!3d5.938596!4d80.5771954!16s%2Fg%2F11gz88whm?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Art Canteen</a></small></div>
+        <div class="icon">📍</div>
+        <div><b>Location</b><small> Staff Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
+        <small><a href="https://www.google.com/maps/place/Staff+Canteen,+University+of+Ruhuna,+A2,+Matara/@5.9373018,80.5755463,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae1391b3aa36e85:0xe1711574a368f104!8m2!3d5.93775!4d80.5764514!16s%2Fg%2F11h17912m?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Staff Canteen</a></small></div>
+        <div class="icon">📍</div>
+        <div><b>Location</b><small> Santhanagaraya Cafeteria, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
+        <small><a href="https://www.google.com/maps/place/Santhanagaraya+Cafeteria/@5.9381128,80.5761927,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae13904c6bdb32f:0x10804db7427d49b9!8m2!3d5.9380958!4d80.5780743!16s%2Fg%2F1tgg8d10?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Santhanagaraya Canteen</a></small></div>
+        <div class="icon">📍</div>
+        <div><b>Location</b><small> Management Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
+        <small><a href="https://www.google.com/maps/place/Management+canteen/@5.9365895,80.5758064,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae13900354045bb:0x527d1eb97fb2a856!8m2!3d5.9362003!4d80.577444!16s%2Fg%2F11y4kqp810?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Management Canteen</a></small></div>
+        
+      </div>
+
+      <div class="item">
+        <div class="icon">📞</div>
+        <div><b>Phone</b><small>0410 123 456</small></div>
+      </div>
+
+      <div class="item">
+        <div class="icon">✉️</div>
+        <div><b>Email</b><small>ruhunacanteens@example.com</small></div>
+      </div>
+
+      <div class="item">
+        <div class="icon">🕒</div>
+        <div><b>Opening hours</b><small>Monday to Friday, 7:30 am - 6:00 pm</small></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function sendMessage() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var text = document.getElementById("text").value;
+
+    if (name == "" || email == "" || text == "") {
+      document.getElementById("message").style.color = "#b3372c";
+      document.getElementById("message").innerText = "Please fill in all the boxes.";
+      return;
+    }
+    document.getElementById("message").style.color = "#2e7d4f";
+    document.getElementById("message").innerText = "Thank you, " + name + "! Your message was sent.";
+  }
+</script>
+
+</body>
+</html>
