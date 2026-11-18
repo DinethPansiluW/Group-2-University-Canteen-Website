@@ -1,29 +1,29 @@
 (function () {
   const script = document.currentScript;
-  const SHARED = new URL('./', script.src);   // folder containing layout.js
-  const ROOT = new URL('../', SHARED);        // folder that contains shared/
+  const SHARED = new URL('./', script.src);   
+  const ROOT = new URL('../', SHARED);         
 
-  // Paths are relative to ROOT (the folder that contains shared/ = Group-2---Title)
+ 
   const PAGES = {
     home: 'index.html',
     about: 'html/about.html',
     register: 'html/register.html',
     contact: 'html/contact.html',
   };
-  const BRAND_NAME = 'Taste of Ruhuna';                       // plain text (alt, aria-label)
-  const BRAND_NAME_HTML = 'Taste of <span class="brand-green">Ruhuna</span>'; // what is shown
-  const LOGO = 'assets/ruhuna-2.png';  // relative to ROOT
-  const LOGO_HEIGHT = 34;      // header logo height in px
+  const BRAND_NAME = 'Taste of Ruhuna';                       
+  const BRAND_NAME_HTML = 'Taste of <span class="brand-green">Ruhuna</span>';  
+  const LOGO = 'assets/ruhuna-2.png'; 
+  const LOGO_HEIGHT = 34;       
   const LOGO_HEIGHT_FOOTER = 30;
   const FOOTER_TAGLINE = '';
 
   const url = (p) => new URL(p, ROOT).href;
   const path = decodeURIComponent(location.pathname);
   const isActive = (p) => path.endsWith(p);
-  // Home = the page that actually has the #home section
+ 
   const onHome = !!document.getElementById('home');
 
-  // Always load layout.css from next to layout.js (independent of the page's <link>)
+ 
   const cssHref = new URL('layout.css', SHARED).href;
   if (![...document.querySelectorAll('link[rel="stylesheet"]')].some((l) => l.href === cssHref)) {
     const css = document.createElement('link');
@@ -37,7 +37,7 @@
   const link = (href, label, active) =>
     `<a class="nav-link${active ? ' active' : ''}" href="${href}">${label}</a>`;
 
-  // Inline height so the logo is sized even if a stylesheet fails to load
+  
   const brandHTML = (h) => `
     <a class="brand" href="${url(PAGES.home)}" aria-label="${BRAND_NAME}">
       <img class="brand-logo" src="${url(LOGO)}" alt="${BRAND_NAME}" style="height:${h}px;width:auto;max-width:none;display:block">
