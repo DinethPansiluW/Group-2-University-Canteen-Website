@@ -1,0 +1,137 @@
+/* ==================== TASTE OF RUHUNA - ABOUT PAGE STYLES ==================== */
+/* Inherits variables, fonts, header, buttons, and footer from home.css */
+
+/* Hero Section (Matches home.css .hero-copy & .eyebrow) */
+.about-hero {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 0 44px;
+}
+
+.about-hero h1 {
+    font: 800 clamp(36px, 5vw, 54px)/1.08 "Bricolage Grotesque", sans-serif;
+    letter-spacing: -2px;
+    margin: 16px 0;
+    color: var(--ink);
+}
+
+.about-hero h1 span {
+    color: var(--green);
+}
+
+.about-hero p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 560px;
+}
+
+/* Info Grid (2 Columns - Mission / Vision / Story) */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+    margin-bottom: 56px;
+}
+
+.info-card {
+    background: #faf6ee;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.info-card h3 {
+    font: 700 19px "Bricolage Grotesque", sans-serif;
+    color: var(--ink);
+    margin: 0 0 8px;
+}
+
+.info-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Directory Section (Uses .canteen-band & .section-heading from home.css) */
+.about-directory {
+    background: #f8f3ea;
+    padding: 64px 0 76px;
+}
+
+.about-canteen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.about-canteen-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.2s;
+}
+
+.about-canteen-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 8px 24px #3b221012;
+}
+
+.canteen-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.canteen-card-top h3 {
+    font: 700 17px "Bricolage Grotesque", sans-serif;
+    margin: 0;
+    color: var(--ink);
+}
+
+/* Uses static badge styling matching home.css .status-badge */
+.open-pill {
+    border-radius: 30px;
+    background: #fbefc9;
+    color: #087725;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.meta-info {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 0 6px;
+    line-height: 1.5;
+}
+
+.specialty-box {
+    margin-top: 14px;
+    background: var(--green-pale);
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 13px;
+    border-radius: 10px;
+}
+
+@media (max-width: 650px) {
+    .about-hero {
+        padding: 36px 0 32px;
+    }
+
+    .about-directory {
+        padding: 48px 0;
+    }
+}
