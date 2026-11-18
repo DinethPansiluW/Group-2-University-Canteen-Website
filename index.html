@@ -4,25 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ruhuna Eats | University of Ruhuna Canteens</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:wght@600;700;800&family=Noto+Sans+Sinhala:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/layout.css">
 <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="#home"><span class="brand-mark" data-brand-mark></span><span data-brand-name></span></a>
-  <nav class="main-nav">
-    <a class="nav-link active" href="#home">Home</a>
-    <a class="nav-link" href="#canteens">Canteens</a>
-    <a class="nav-link" href="#menu">Menu</a>
-    <a class="nav-link" href="#orders">Orders</a>
-  </nav>
-  <div class="header-actions">
-    <button class="icon-button" id="cart-open" aria-label="Open cart">🛒<span id="cart-count" class="cart-count">0</span></button>
-    <button class="button button-dark small" id="owner-open">Owner panel</button>
-  </div>
-</header>
+<div data-site-header data-actions></div>
 
 <main>
   <section class="hero section-wrap" id="home">
@@ -84,7 +70,7 @@
   </section>
 </main>
 
-<footer class="footer"><div class="section-wrap footer-inner"><a class="brand" href="#home"><span class="brand-mark" data-brand-mark></span><span data-brand-name></span></a><p id="footer-tagline"></p></div></footer>
+<div data-site-footer></div>
 
 <div class="overlay" id="cart-overlay"></div>
 <aside class="drawer" id="cart-drawer" aria-label="Cart">
@@ -130,6 +116,9 @@
 </div></div>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="js/home.js"></script>
+
+<!-- layout.js must load before home.js (no defer) -->
+<script src="../Group-2---Title/shared/layout.js"></script>
+<script src="../Group-2---Title/js/home.js"></script>
 </body>
 </html>

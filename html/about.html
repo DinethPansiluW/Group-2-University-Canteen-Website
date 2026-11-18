@@ -11,34 +11,14 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:wght@600;700;800&family=Noto+Sans+Sinhala:wght@500;700&display=swap"
         rel="stylesheet">
     <!-- Shared theme first, page-specific CSS second -->
-    <link rel="stylesheet" href="/css/about1.css">
-    <link rel="stylesheet" href="/css/about2.css">
+    <link rel="stylesheet" href="../css/about1.css">
+    <link rel="stylesheet" href="../css/about2.css">
+    <link rel="stylesheet" href="../shared/layout.css">
 </head>
 
 <body>
 
-    <!-- Header matching register.html and home.html -->
-    <header class="site-header">
-        <a class="brand" href="home.html#home">
-            <span class="brand-mark has-logo">
-                <img src="/assets/ruhuna-2.png" alt="Taste of Ruhuna Logo">
-            </span>
-            <span class="brand-green">Taste of Ruhuna</span>
-        </a>
-
-        <nav class="main-nav">
-            <a class="nav-link" href="home.html#home">Home</a>
-            <a class="nav-link" href="home.html#canteens">Canteens</a>
-            <a class="nav-link" href="home.html#menu">Menu</a>
-            <a class="nav-link" href="home.html#orders">Orders</a>
-            <a class="nav-link active" href="about.html">About</a>
-            <a class="nav-link" href="register.html">Register</a>
-        </nav>
-
-        <div class="header-actions">
-            <a class="button button-dark small" href="home.html#menu">Order now</a>
-        </div>
-    </header>
+    <div data-site-header data-actions></div>
 
     <main>
         <!-- Hero Section -->
@@ -156,18 +136,10 @@
         </section>
     </main>
 
-    <!-- Footer matching register.html and home.html -->
-    <footer class="footer">
-        <div class="section-wrap footer-inner">
-            <a class="brand" href="home.html#home">
-                <!-- <span class="footer .brand-mark.has-logo"> -->
-                <img src="/assets/ruhuna-2.png" alt="Taste of Ruhuna Logo" class="q">
-                <!-- </span> -->
-                <span>Taste of Ruhuna</span>
-            </a>
-            <p>Taste of Ruhuna - University Canteen Portal</p>
-        </div>
-    </footer>
+
+    <div data-site-footer></div>
+
+    <script src="../shared/layout.js"></script>
 
 </body>
 

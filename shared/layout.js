@@ -1,0 +1,80 @@
+(function () {
+  const script = document.currentScript;
+  const SHARED = new URL('./', script.src);   // folder containing layout.js
+  const ROOT = new URL('../', SHARED);        // folder that contains shared/
+
+  // Paths are relative to ROOT (the folder that contains shared/ = Group-2---Title)
+  const PAGES = {
+    home: 'index.html',
+    about: 'html/about.html',
+    register: 'html/register.html',
+    contact: 'html/contact.html',
+  };
+  const BRAND_NAME = 'Taste of Ruhuna';                       // plain text (alt, aria-label)
+  const BRAND_NAME_HTML = 'Taste of <span class="brand-green">Ruhuna</span>'; // what is shown
+  const LOGO = 'assets/ruhuna-2.png';  // relative to ROOT
+  const LOGO_HEIGHT = 34;      // header logo height in px
+  const LOGO_HEIGHT_FOOTER = 30;
+  const FOOTER_TAGLINE = '';
+
+  const url = (p) => new URL(p, ROOT).href;
+  const path = decodeURIComponent(location.pathname);
+  const isActive = (p) => path.endsWith(p);
+  // Home = the page that actually has the #home section
+  const onHome = !!document.getElementById('home');
+
+  // Always load layout.css from next to layout.js (independent of the page's <link>)
+  const cssHref = new URL('layout.css', SHARED).href;
+  if (![...document.querySelectorAll('link[rel="stylesheet"]')].some((l) => l.href === cssHref)) {
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = cssHref;
+    document.head.insertBefore(css, document.head.firstChild);
+  }
+
+  const homeHash = (h) => (onHome ? h : url(PAGES.home) + h);
+
+  const link = (href, label, active) =>
+    `<a class="nav-link${active ? ' active' : ''}" href="${href}">${label}</a>`;
+
+  // Inline height so the logo is sized even if a stylesheet fails to load
+  const brandHTML = (h) => `
+    <a class="brand" href="${url(PAGES.home)}" aria-label="${BRAND_NAME}">
+      <img class="brand-logo" src="${url(LOGO)}" alt="${BRAND_NAME}" style="height:${h}px;width:auto;max-width:none;display:block">
+      <span data-brand-name>${BRAND_NAME_HTML}</span>
+    </a>`;
+
+  const headerHTML = (withActions) => `
+  <header class="site-header">
+    ${brandHTML(LOGO_HEIGHT)}
+    <nav class="main-nav">
+      ${link(homeHash('#home'), 'Home', onHome)}
+      ${link(homeHash('#canteens'), 'Canteens')}
+      ${link(homeHash('#menu'), 'Menu')}
+      ${link(homeHash('#orders'), 'Orders')}
+      ${link(url(PAGES.about), 'About Us', isActive(PAGES.about))}
+      ${link(url(PAGES.register), 'Register', isActive(PAGES.register))}
+      ${link(url(PAGES.contact), 'Contact Us', isActive(PAGES.contact))}
+    </nav>
+    ${withActions ? `
+    <div class="header-actions">
+      <button class="icon-button" id="cart-open" aria-label="Open cart">🛒<span id="cart-count" class="cart-count">0</span></button>
+      <button class="button button-dark small" id="owner-open">Owner panel</button>
+    </div>` : ''}
+  </header>`;
+
+  const footerHTML = `
+  <footer class="footer">
+    <div class="section-wrap footer-inner">
+      ${brandHTML(LOGO_HEIGHT_FOOTER)}
+      <p id="footer-tagline">${FOOTER_TAGLINE}</p>
+    </div>
+  </footer>`;
+
+  document.querySelectorAll('[data-site-header]').forEach((el) => {
+    el.outerHTML = headerHTML(el.hasAttribute('data-actions'));
+  });
+  document.querySelectorAll('[data-site-footer]').forEach((el) => {
+    el.outerHTML = footerHTML;
+  });
+})();
