@@ -51,7 +51,6 @@
     ${brandHTML(LOGO_HEIGHT)}
     <nav class="main-nav">
       ${link(homeHash('#home'), 'Home', onHome)}
-      ${link(homeHash('#canteens'), 'Canteens')}
       ${link(url(PAGES.menu), 'Menu', isActive(PAGES.menu))}
       ${link(url(PAGES.orders), 'Orders', isActive(PAGES.orders))}
       ${link(url(PAGES.about), 'About Us', isActive(PAGES.about))}

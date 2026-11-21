@@ -1,5 +1,5 @@
 /* =====================================================================
-   home.js  (index.html only): hero, meal tabs, canteens
+   home.js  (index.html only): hero and meal tabs
    Needs js/common.js loaded first.
    ===================================================================== */
 
@@ -7,7 +7,6 @@ let activeMeal = "All";
 
 function renderPage() {
   renderHome();
-  renderCanteens();
 }
 
 function renderHome() {
@@ -29,35 +28,6 @@ function renderHome() {
 
 }
 
-function renderCanteens() {
-
-  $("canteen-grid").innerHTML = CONFIG.canteens.map((c, i) => {
-
-    const n = foods.filter(f =>
-      f.canteen === c.name && inStock(f)
-    ).length;
-
-    return `<button class="canteen-card" data-canteen="${i}">
-
-      <div class="canteen-icon">${c.icon}</div>
-
-      <h3>${esc(c.name)}</h3>
-
-      <div class="canteen-campus">${esc(c.campus)}</div>
-
-      <p>${n} available item${n === 1 ? "" : "s"} today</p>
-
-      <span class="canteen-status ${n ? "" : "none"}">
-        ${n ? "● Menu available" : "● Nothing available"}
-      </span>
-
-    </button>`;
-
-  }).join("");
-
-}
-
-
 /* Meal tabs */
 $$(".meal-tab").forEach(b =>
   b.addEventListener("click", () => {
@@ -72,15 +42,6 @@ $("hero-search").addEventListener("submit", e => {
   const q = $("search-input").value.trim();
   location.href = "html/menu.html" + (q ? "?q=" + encodeURIComponent(q) : "");
 });
-
-/* Canteen card -> Menu page filtered by that canteen */
-document.addEventListener("click", e => {
-  const t = e.target.closest("[data-canteen]");
-  if (!t) return;
-  location.href = "html/menu.html?canteen=" +
-    encodeURIComponent(CONFIG.canteens[t.dataset.canteen].name);
-});
-
 
 /* ---------- Start ---------- */
 
