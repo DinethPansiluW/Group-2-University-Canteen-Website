@@ -10,6 +10,7 @@
     menu: 'html/menu.html',
     orders: 'html/orders.html',
     register: 'html/register.html',
+    login: 'html/login.html',
     contact: 'html/contact.html',
   };
   const BRAND_NAME = 'Taste of Ruhuna';                       
@@ -55,6 +56,7 @@
       ${link(url(PAGES.orders), 'Orders', isActive(PAGES.orders))}
       ${link(url(PAGES.about), 'About Us', isActive(PAGES.about))}
       ${link(url(PAGES.register), 'Register', isActive(PAGES.register))}
+      ${link(url(PAGES.login), 'Login', isActive(PAGES.login))}
       ${link(url(PAGES.contact), 'Contact Us', isActive(PAGES.contact))}
     </nav>
     ${withActions ? `
