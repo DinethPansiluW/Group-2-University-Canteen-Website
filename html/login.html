@@ -8,22 +8,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:wght@600;700;800&family=Noto+Sans+Sinhala:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../shared/layout.css">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="home.html#home"><span class="brand-mark" data-brand-mark></span><span data-brand-name></span></a>
-  <nav class="main-nav">
-    <a class="nav-link" href="home.html#home">Home</a>
-    <a class="nav-link" href="home.html#canteens">Canteens</a>
-    <a class="nav-link" href="home.html#menu">Menu</a>
-    <a class="nav-link" href="home.html#orders">Orders</a>
-    <a class="nav-link" href="features.html">Features</a>
-    <a class="nav-link active" href="login.html">Login</a>
-  </nav>
-  <div class="header-actions">
-    <a class="button button-dark small" href="register.html">Register</a>
-  </div>
-</header>
+   <div data-site-header data-actions></div>
 
 <main>
   <section class="hero register-hero section-wrap" id="login">
@@ -63,12 +51,9 @@
   </section>
 </main>
 
-<footer class="footer">
-  <div class="section-wrap footer-inner">
-    <a class="brand" href="home.html#home"><span class="brand-mark" data-brand-mark></span><span data-brand-name></span></a>
-    <p id="footer-tagline"></p>
-  </div>
-</footer>
+<div data-site-footer></div>
+
+    <script src="../shared/layout.js"></script>
 
 <div class="modal-backdrop" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title">
   <div class="modal success-modal">
