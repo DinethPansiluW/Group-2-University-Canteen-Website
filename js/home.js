@@ -429,9 +429,31 @@ function cleanCart() {
 }
 
 
+const picked = () => cart.filter(i => i.sel);
+
+function pickItem(id, on) {
+
+  const it = cart.find(x => x.id === id);
+  if (!it) return;
+
+  it.sel = on;
+
+  // One canteen per order: ticking an item un-ticks other canteens' items
+  if (on) {
+    const c = find(id).canteen;
+    let dropped = false;
+    cart.forEach(x => {
+      if (x.sel && find(x.id).canteen !== c) { x.sel = false; dropped = true; }
+    });
+    if (dropped) toast(`Only ${c} items selected (one canteen per order)`);
+  }
+
+  renderCart();
+}
+
 function cartTotal() {
 
-  return cart.reduce(
+  return picked().reduce(
     (n, i) => n + find(i.id).price * i.qty,
     0
   );
@@ -450,7 +472,13 @@ function renderCart() {
 
     const f = find(i.id);
 
-    return `<div class="cart-row">
+    return `<div class="cart-row ${i.sel ? "" : "unpicked"}">
+
+      <label class="cart-pick" title="Select for checkout">
+        <input type="checkbox" data-pick="${esc(f.id)}" ${i.sel ? "checked" : ""}
+          aria-label="Select ${esc(f.name)} for checkout">
+        <span class="tick" aria-hidden="true"></span>
+      </label>
 
       <div class="cart-emoji">
 
@@ -497,6 +525,11 @@ function renderCart() {
 
   $("cart-total").textContent =
     $("checkout-total").textContent = money(cartTotal());
+
+  const n = picked().length;
+  const cb = $("checkout-button");
+  cb.disabled = !n;
+  cb.textContent = n ? `Continue to checkout (${n})` : "Select items to continue";
 
 }
 
@@ -612,7 +645,11 @@ function addToCart(id) {
 
   } else {
 
-    cart.push({ id, qty: 1 });
+    const sel = picked();
+    cart.push({
+      id, qty: 1,
+      sel: !sel.length || find(sel[0].id).canteen === f.canteen
+    });
 
   }
 
@@ -670,8 +707,13 @@ function checkout() {
   if (!cart.length)
     return toast("Your cart is empty");
 
+  const chosen = picked();
+
+  if (!chosen.length)
+    return toast("Tick the items you want to order");
+
   const canteens = [
-    ...new Set(cart.map(i => find(i.id).canteen))
+    ...new Set(chosen.map(i => find(i.id).canteen))
   ];
 
   if (canteens.length > 1)
@@ -741,7 +783,7 @@ $("checkout-form").addEventListener("submit", e => {
 
   cleanCart();
 
-  if (!cart.length)
+  if (!picked().length)
     return toast("Your cart changed. Please review it.");
 
   const name = $("student-name").value.trim();
@@ -765,7 +807,7 @@ $("checkout-form").addEventListener("submit", e => {
 
     cleanCart();
 
-    if (!cart.length) {
+    if (!picked().length) {
       btn.disabled = false;
       btn.textContent = "Pay & place order";
       return toast("Your cart changed. Please review it.");
@@ -784,13 +826,13 @@ $("checkout-form").addEventListener("submit", e => {
 
       studentId: sid,
 
-      canteen: find(cart[0].id).canteen,
+      canteen: find(picked()[0].id).canteen,
 
       payment: "Card •••• " + last4,
 
       paid: true,
 
-      items: cart.map(i => {
+      items: picked().map(i => {
 
         const f = find(i.id);
 
@@ -817,7 +859,7 @@ $("checkout-form").addEventListener("submit", e => {
 
     orders.unshift(order);
 
-    cart = [];
+    cart = cart.filter(i => !i.sel); // keep un-ticked items in the cart
 
     save();
 
@@ -1066,6 +1108,10 @@ document.addEventListener("click", e => {
 
 
 document.addEventListener("change", e => {
+
+  if (e.target.dataset.pick) {
+    return pickItem(e.target.dataset.pick, e.target.checked);
+  }
 
   if (e.target.dataset.status) {
 

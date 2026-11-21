@@ -1070,3 +1070,17 @@ button {
 .pay-note { display: block; color: var(--muted); font-size: 11px; line-height: 1.5; }
 .field-error { display: block; color: #bb4444; font-size: 12px; font-weight: 600; margin-top: 6px; min-height: 0; }
 .button:disabled { opacity: 0.6; cursor: wait; }
+
+/* ---------- Cart item tick boxes ---------- */
+.cart-pick { display: flex; align-items: center; flex: none; cursor: pointer; margin-right: 10px; }
+.cart-pick input { position: absolute; opacity: 0; width: 0; height: 0; }
+.cart-pick .tick {
+  width: 22px; height: 22px; border-radius: 7px; border: 2px solid #cdb99b; background: #fff;
+  display: grid; place-items: center; transition: 0.15s;
+}
+.cart-pick input:checked + .tick { background: var(--green); border-color: var(--green); }
+.cart-pick input:checked + .tick::after { content: "✓"; color: #fff; font-size: 14px; font-weight: 800; line-height: 1; }
+.cart-pick input:focus-visible + .tick { outline: 2px solid var(--green); outline-offset: 2px; }
+.cart-row.unpicked .cart-emoji,
+.cart-row.unpicked .cart-row-info b,
+.cart-row.unpicked > strong { opacity: 0.45; }
