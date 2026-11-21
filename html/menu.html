@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | Taste of Ruhuna</title>
+<link rel="stylesheet" href="../shared/layout.css">
+<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="../css/menu.css">
+</head>
+<body>
+<div data-site-header data-actions></div>
+
+<main>
+  <section class="section-wrap menu-hero">
+    <h1>Full food <span>menu</span></h1>
+    <p>Filter by canteen, category or availability, then add to your cart.</p>
+    <form class="menu-search" id="menu-search">
+      <span>⌕</span><input id="search-input" type="search" placeholder="Search kottu, rice, juice…" aria-label="Search foods">
+    </form>
+  </section>
+
+  <section class="section-wrap menu-section" id="menu">
+    <div class="filters">
+      <label class="filter-field"><span>Canteen</span><select id="canteen-filter"></select></label>
+      <label class="filter-field"><span>Category</span><select id="category-filter"></select></label>
+      <label class="filter-field"><span>Meal time</span><select id="meal-filter"><option value="All">All meal times</option><option>Breakfast</option><option>Lunch</option><option>Dinner</option></select></label>
+      <label class="check-filter"><input type="checkbox" id="available-filter"> Available only</label>
+    </div>
+    <div class="results-line"><span id="results-count"></span><button class="text-link" id="clear-filters">Clear filters</button></div>
+    <div class="food-grid" id="all-food-grid"></div>
+  </section>
+</main>
+
+<div data-site-footer></div>
+
+<!-- layout.js, then common.js (shared), then menu.js (this page) -->
+<script src="../shared/layout.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/menu.js"></script>
+</body>
+</html>

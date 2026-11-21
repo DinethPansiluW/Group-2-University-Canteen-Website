@@ -1,0 +1,90 @@
+/* Orders page (Uber / PickMe style order history) */
+body { background: #fbf6ee; }
+.orders-page { padding: 34px 0 70px; }
+.orders-top h1 { font: 700 34px/1.15 "Bricolage Grotesque", sans-serif; margin: 0 0 6px; }
+.orders-top p { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+
+.orders-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
+.orders-search { flex: 1; min-width: 220px; max-width: 520px; display: flex; align-items: center; gap: 8px;
+  background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 12px; }
+.orders-search input { border: 0; outline: 0; background: none; padding: 12px 0; width: 100%; font-size: 14px; }
+.orders-search:focus-within { border-color: var(--green); }
+.tabs { display: flex; gap: 6px; }
+.tab { border: 1.5px solid var(--line); background: #fff; color: var(--muted); font-weight: 700; font-size: 13px;
+  padding: 10px 16px; border-radius: 30px; }
+.tab.active { background: var(--green); border-color: var(--green); color: #fff; }
+
+.order-banner { background: #e8f6ea; border: 1px solid #bfe3c5; color: #1f6b30; border-radius: 14px;
+  padding: 14px 16px; font-size: 14px; font-weight: 600; margin-bottom: 16px; display: flex; gap: 10px; align-items: center; }
+
+.order-list { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.order-list .empty { grid-column: 1 / -1; }
+@media (max-width: 860px) { .order-list { grid-template-columns: 1fr; } }
+.order-card { width: 100%; text-align: left; display: flex; align-items: center; gap: 14px; background: #fff;
+  border: 1.5px solid var(--line); border-radius: 16px; padding: 16px; transition: 0.15s; font: inherit; color: inherit; }
+.order-card:hover { border-color: var(--green); transform: translateY(-1px); box-shadow: 0 6px 18px #4a2a1218; }
+.order-icon { width: 50px; height: 50px; border-radius: 14px; background: var(--green-pale); display: grid;
+  place-items: center; font-size: 24px; flex: none; }
+.order-main { flex: 1; min-width: 0; }
+.order-main b { display: block; font-size: 15px; }
+.order-main small { display: block; color: var(--muted); font-size: 12px; margin-top: 3px; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; }
+.order-main .oid { color: var(--green); font-weight: 800; letter-spacing: .5px; font-size: 12px; }
+.order-side { text-align: right; flex: none; }
+.order-side strong { display: block; font-size: 15px; margin-bottom: 6px; }
+
+.chip { display: inline-block; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 30px;
+  background: #fbefc9; color: #5a3a10; white-space: nowrap; }
+.chip.ok { background: #e3f4e6; color: #1f6b30; }
+.chip.bad { background: #ffeded; color: #bb4444; }
+.chip.go { background: #e6efff; color: #2a4f9a; }
+
+.empty { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; background: #fff;
+  border: 1.5px dashed var(--line); border-radius: 16px; }
+.empty .big { font-size: 40px; display: block; margin-bottom: 10px; }
+.empty a { display: inline-block; margin-top: 16px; text-decoration: none; }
+
+/* Detail drawer/modal */
+.detail-backdrop { position: fixed; inset: 0; background: #1d0f0599; display: none; z-index: 60;
+  align-items: center; justify-content: center; padding: 16px; }
+.detail-backdrop.show { display: flex; }
+.detail { background: #fff; border-radius: 20px; width: min(520px, 100%); max-height: 92vh; overflow: auto;
+  padding: 26px; position: relative; }
+.detail-x { position: absolute; right: 16px; top: 16px; border: 0; background: #f4ece0; width: 34px; height: 34px;
+  border-radius: 50%; font-size: 18px; }
+.detail h2 { font: 700 24px "Bricolage Grotesque", sans-serif; margin: 0 0 4px; padding-right: 40px; }
+.detail .sub { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+
+.id-box { background: #3b2210; color: #fff; border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 18px; }
+.id-box small { color: #e0d0ba; font-size: 12px; }
+.id-box .big-id { font: 800 32px "Bricolage Grotesque", sans-serif; letter-spacing: 3px; color: #f0b323; margin: 6px 0 10px; }
+.id-box button { border: 1px solid #ffffff33; background: #ffffff14; color: #fff; border-radius: 8px;
+  padding: 7px 14px; font-size: 12px; font-weight: 700; }
+.id-box p { margin: 10px 0 0; font-size: 12px; color: #e0d0ba; }
+
+.track { display: flex; justify-content: space-between; margin: 6px 0 20px; position: relative; }
+.track::before { content: ""; position: absolute; left: 10%; right: 10%; top: 11px; height: 3px; background: var(--line); }
+.step { position: relative; z-index: 1; text-align: center; flex: 1; font-size: 11px; color: var(--muted); font-weight: 600; }
+.step i { display: block; width: 24px; height: 24px; margin: 0 auto 6px; border-radius: 50%; background: #fff;
+  border: 3px solid var(--line); }
+.step.done i { background: var(--green); border-color: var(--green); }
+.step.now i { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 0 4px #f0b32333; }
+.step.done, .step.now { color: var(--ink); }
+
+.section-t { font-size: 12px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; color: var(--muted);
+  margin: 18px 0 8px; }
+.line-row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding: 8px 0;
+  border-bottom: 1px dashed var(--line); }
+.line-row span:first-child { color: var(--ink); }
+.total-row2 { display: flex; justify-content: space-between; font-weight: 800; font-size: 16px; padding-top: 12px; }
+.kv { display: grid; grid-template-columns: 120px 1fr; gap: 8px 10px; font-size: 13px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; font-weight: 600; }
+.reject-note { background: #ffeded; color: #8c2f2f; border-radius: 12px; padding: 12px 14px; font-size: 13px; margin-bottom: 14px; }
+
+@media (max-width: 650px) {
+  .orders-top h1 { font-size: 27px; }
+  .order-card { padding: 13px; gap: 11px; }
+  .order-icon { width: 42px; height: 42px; font-size: 20px; }
+  .kv { grid-template-columns: 100px 1fr; }
+}

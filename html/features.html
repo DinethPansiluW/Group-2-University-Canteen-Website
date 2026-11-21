@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Features &amp; Services | University of Ruhuna Canteens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:wght@600;700;800&family=Noto+Sans+Sinhala:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/features.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="home.html#home"><span class="brand-mark" data-brand-mark></span><span data-brand-name></span></a>
+  <nav class="main-nav">
+    <a class="nav-link" href="home.html#home">Home</a>
+    <a class="nav-link" href="home.html#canteens">Canteens</a>
+    <a class="nav-link" href="home.html#menu">Menu</a>
+    <a class="nav-link" href="home.html#orders">Orders</a>
+    <a class="nav-link active" href="features.html">Features</a>
+    <a class="nav-link" href="register.html">Register</a>
+  </nav>
+  <div class="header-actions">
+    <a class="button button-dark small" href="register.html">Register</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero section-wrap" id="top">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="pulse"></span> <span class="si">රුහුණ විශ්වවිද්‍යාලය</span> · Features &amp; services</span>
+      <h1>Everything you need<br><span>to eat on campus.</span></h1>
+      <p>One place to see what every Ruhuna canteen is serving, order ahead between lectures and collect with your Order ID. Canteen owners manage their own menus and orders.</p>
+      <div class="hero-actions">
+        <a class="button button-green" href="#features">See the features</a>
+        <a class="button button-light" href="#services">Our services</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img src="../assets/1.jpg" alt="University of Ruhuna campus" class="horizon">
+      <div class="floating-card floating-top"><span class="floating-icon">🍽️</span><div><strong id="hero-count">0 canteens</strong><small id="hero-campuses"></small></div></div>
+      <div class="floating-card floating-bottom"><span class="status-dot"></span><div><strong>Check before you go</strong><small>Stock shown on every item</small></div></div>
+    </div>
+  </section>
+
+  <section class="section-wrap feature-section" id="features">
+    <div class="section-heading"><div><h2>Main features</h2><p>What you can do on Ruhuna Eats today.</p></div></div>
+    <div class="feature-grid" id="feature-grid"></div>
+  </section>
+
+  <section class="canteen-band" id="services">
+    <div class="section-wrap">
+      <div class="section-heading"><div><h2>Our services</h2><p>Built for the two groups who use the canteens every day.</p></div></div>
+      <div class="service-grid">
+        <article class="service-panel">
+          <div class="canteen-icon">🎓</div>
+          <h3>For students</h3>
+          <p>Plan your meal before you leave the lecture hall.</p>
+          <ul class="check-list" id="student-services"></ul>
+          <a class="text-link" href="register.html">Create your account ↗</a>
+        </article>
+        <article class="service-panel">
+          <div class="canteen-icon">🧑‍🍳</div>
+          <h3>For canteen owners</h3>
+          <p>Keep your menu and orders up to date from one panel.</p>
+          <ul class="check-list" id="owner-services"></ul>
+          <a class="text-link" href="home.html#home">Open the owner panel ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-wrap campus-section" id="campuses">
+    <div class="section-heading"><div><h2>Canteens we cover</h2><p>Tap a canteen to see its menu.</p></div><a class="text-link" href="home.html#menu">Full menu ↗</a></div>
+    <div class="canteen-grid" id="canteen-grid"></div>
+  </section>
+
+  <section class="order-section" id="how">
+    <div class="section-wrap order-inner">
+      <div><h2>Ready to order?<br><span>It takes a minute.</span></h2><p>Register once, pick your food and show your Order ID at the canteen counter.</p><a class="button button-green" href="register.html">Register now</a></div>
+      <div class="order-steps" id="how-steps"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="section-wrap footer-inner">
+    <a class="brand" href="home.html#home"><span class="brand-mark" data-brand-mark></span><span data-brand-name></span></a>
+    <p id="footer-tagline"></p>
+  </div>
+</footer>
+
+<script src="../js/features.js"></script>
+</body>
+</html>

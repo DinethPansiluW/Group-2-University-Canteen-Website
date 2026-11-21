@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders | Taste of Ruhuna</title>
+<link rel="stylesheet" href="../shared/layout.css">
+<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="../css/orders.css">
+</head>
+<body>
+<div data-site-header data-actions></div>
+
+<main class="section-wrap orders-page">
+  <div class="orders-top">
+    <h1>My orders</h1>
+    <p>Your past and current orders. Tap an order to see its details and Order ID.</p>
+  </div>
+
+  <div id="order-banner"></div>
+
+  <div class="orders-tools">
+    <label class="orders-search"><span>⌕</span><input id="order-search" type="search" placeholder="Search by Order ID or food…" aria-label="Search orders"></label>
+    <div class="tabs">
+      <button class="tab active" data-tab="all">All</button>
+      <button class="tab" data-tab="active">Active</button>
+      <button class="tab" data-tab="past">Past</button>
+    </div>
+  </div>
+
+  <div class="order-list" id="order-list"></div>
+</main>
+
+<div class="detail-backdrop" id="detail-backdrop">
+  <div class="detail" id="detail" role="dialog" aria-modal="true" aria-label="Order details"></div>
+</div>
+
+<div data-site-footer></div>
+
+<!-- layout.js, then common.js (shared cart/owner panel), then orders.js (this page) -->
+<script src="../shared/layout.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/orders.js"></script>
+</body>
+</html>

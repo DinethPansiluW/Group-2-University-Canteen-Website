@@ -1,0 +1,60 @@
+/* Menu page (html/menu.html). Shared components (food cards, cart, modals) come from css/home.css */
+
+.menu-hero { padding: 40px 0 8px; }
+.menu-hero h1 {
+  font: 800 clamp(32px, 4.2vw, 46px)/1.1 "Bricolage Grotesque", sans-serif;
+  letter-spacing: -1.5px;
+  margin: 0 0 8px;
+}
+.menu-hero h1 span { color: var(--green); }
+.menu-hero p { color: var(--muted); font-size: 15px; margin: 0 0 20px; }
+
+.menu-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 560px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 7px 7px 7px 15px;
+  background: #fff;
+}
+.menu-search input { flex: 1; border: 0; outline: 0; font-size: 14px; background: none; min-width: 0; }
+
+.menu-section { padding: 28px 0 88px; }
+
+.filters {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 16px;
+  background: #faf6ee;
+  border-radius: 14px;
+}
+.filter-field { display: grid; gap: 6px; flex: 1; min-width: 150px; }
+.filter-field span { font-size: 12px; font-weight: 700; color: #6b5444; }
+.filter-field select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+}
+.check-filter { font-size: 13px; display: flex; align-items: center; gap: 8px; padding: 12px 5px; }
+
+.results-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 14px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 650px) {
+  .menu-section { padding: 20px 0 48px; }
+  .filter-field { min-width: calc(50% - 6px); }
+}
