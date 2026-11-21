@@ -1,6 +1,7 @@
 
 
 :root {
+<<<<<<< HEAD
   --maroon: #6b1420;
   --maroon-deep: #2a0c10;
   --gold: #f0b323;
@@ -191,12 +192,20 @@ a.button {
   transition: 0.2s;
 }
 
+=======
+  --danger: #bb4444;        /* same red already used by .status-badge.sold */
+  --danger-pale: #ffeded;
+}
+
+/* anchors styled as buttons (home.css only styles <button>) */
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 a.button {
   display: inline-block;
   text-decoration: none;
   text-align: center;
 }
 
+<<<<<<< HEAD
 .button:hover,
 a.button:hover {
   filter: brightness(0.95);
@@ -236,6 +245,9 @@ a.button.full {
   padding: 64px 0 72px;
 }
 
+=======
+/* ---------- layout (reuses .hero grid) ---------- */
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .register-hero {
   grid-template-columns: 0.9fr 1.1fr;
   align-items: start;
@@ -243,6 +255,7 @@ a.button.full {
   padding: 56px 0 80px;
 }
 
+<<<<<<< HEAD
 .eyebrow {
   font-size: 11px;
   font-weight: 700;
@@ -279,19 +292,27 @@ a.button.full {
   max-width: 480px;
 }
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .perk-list {
   display: grid;
   gap: 14px;
   margin-top: 28px;
   max-width: 480px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .perk {
   display: flex;
   align-items: center;
   gap: 14px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .perk-icon {
   width: 42px;
   height: 42px;
@@ -302,12 +323,18 @@ a.button.full {
   place-items: center;
   font-size: 21px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .perk b {
   display: block;
   font-size: 14px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .perk small {
   display: block;
   margin-top: 2px;
@@ -315,7 +342,11 @@ a.button.full {
   color: var(--muted);
 }
 
+<<<<<<< HEAD
 /* ---------- form card & inputs ---------- */
+=======
+/* ---------- form card ---------- */
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .register-card {
   background: #fff;
   border: 1px solid var(--line);
@@ -323,12 +354,16 @@ a.button.full {
   padding: 30px;
   box-shadow: 0 10px 30px #3b221010;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .register-card h2 {
   font: 700 29px var(--font-head);
   letter-spacing: -0.7px;
   margin: 0 0 5px;
 }
+<<<<<<< HEAD
 
 .register-card > p.muted {
   margin: 0 0 6px;
@@ -396,6 +431,29 @@ a.button.full {
   margin-top: 18px;
 }
 
+=======
+.register-card > p.muted {
+  margin: 0 0 6px;
+}
+.register-card .form-label {
+  margin: 14px 0;
+}
+.register-card .form-two .form-label {
+  margin: 14px 0 6px;
+}
+.register-card .form-two {
+  align-items: flex-start;
+}
+.register-card .check-filter {
+  padding: 8px 5px 4px;
+}
+.register-card .check-filter input {
+  accent-color: var(--green);
+}
+.submit-button {
+  margin-top: 18px;
+}
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .switch-note {
   text-align: center;
   font-size: 12px;
@@ -411,32 +469,48 @@ a.button.full {
   font-size: 11px;
   line-height: 1.4;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .field-hint {
   font-weight: 400;
   color: var(--muted);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .field-error {
   font-weight: 600;
   color: var(--danger);
 }
+<<<<<<< HEAD
 
 .field-error:empty {
   display: none;
 }
 
+=======
+.field-error:empty {
+  display: none;
+}
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .form-label input[aria-invalid="true"],
 .form-label select[aria-invalid="true"] {
   border-color: var(--danger);
   background: #fffafa;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .form-label input:focus,
 .form-label select:focus {
   border-color: var(--green);
 }
 
+<<<<<<< HEAD
 /* ---------- modal & success popup ---------- */
 .modal-backdrop {
   position: fixed;
@@ -500,11 +574,17 @@ a.button.full {
   top: 18px;
 }
 
+=======
+/* ---------- success popup (reuses .modal-backdrop / .modal) ---------- */
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .success-modal {
   text-align: center;
   padding: 38px 30px 30px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .success-icon {
   width: 68px;
   height: 68px;
@@ -518,13 +598,19 @@ a.button.full {
   font-weight: 800;
   box-shadow: 0 0 0 8px #f8ecd255;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .success-modal > p {
   font-size: 14px;
   line-height: 1.6;
   margin: 8px 0 0;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .success-details {
   background: #faf6ee;
   border-radius: 12px;
@@ -533,22 +619,32 @@ a.button.full {
   font-size: 13px;
   color: var(--muted);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 .success-details b {
   color: var(--green);
   letter-spacing: 0.5px;
   margin-left: 4px;
 }
+<<<<<<< HEAD
 
 .success-modal .button + .button {
   margin-top: 10px;
 }
 
+=======
+.success-modal .button + .button {
+  margin-top: 10px;
+}
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 @media (prefers-reduced-motion: no-preference) {
   .modal-backdrop.show .success-icon {
     animation: success-pop 0.35s ease both;
   }
 }
+<<<<<<< HEAD
 
 @keyframes success-pop {
   from {
@@ -605,19 +701,28 @@ a.button.full {
 .footer p {
   font-size: 12px;
   margin: 0;
+=======
+@keyframes success-pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 }
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
+<<<<<<< HEAD
   .hero {
     gap: 30px;
   }
 
+=======
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
   .register-hero {
     grid-template-columns: 1fr;
     gap: 36px;
   }
 }
+<<<<<<< HEAD
 
 @media (max-width: 650px) {
   .section-wrap {
@@ -655,10 +760,20 @@ a.button.full {
     padding: 26px 18px;
   }
 
+=======
+@media (max-width: 650px) {
+  .register-hero {
+    padding: 40px 0 50px;
+  }
+  .register-card {
+    padding: 26px 18px;
+  }
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
   .register-card .form-two {
     flex-direction: column;
     gap: 0;
   }
+<<<<<<< HEAD
 
   .register-card .form-two .form-label {
     margin: 14px 0 0;
@@ -675,4 +790,9 @@ a.button.full {
   .modal {
     padding: 26px 18px;
   }
+=======
+  .register-card .form-two .form-label {
+    margin: 14px 0 0;
+  }
+>>>>>>> 0171f44b5922bb7fb09aa9f86ffd0227e0b44dca
 }
