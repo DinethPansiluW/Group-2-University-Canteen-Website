@@ -43,7 +43,7 @@
 
     if (!all.length) {
       $("order-list").innerHTML = `<div class="empty"><span class="big">🧾</span>You have not placed any orders yet.<br>
-        <a class="button button-green" href="../index.html#menu">Browse the menu</a></div>`;
+        <a class="button button-green" href="menu.html">Browse the menu</a></div>`;
       return;
     }
     if (!list.length) {
@@ -138,6 +138,13 @@
     if (open) renderDetail(open);
   });
 
+  // Called by common.js whenever data changes (e.g. owner updates a status)
+  window.renderPage = () => {
+    renderList();
+    const open = $("detail-backdrop").dataset.id;
+    if (open) renderDetail(open);
+  };
+
   renderList();
 
   if (focusId && load().some((o) => o.id === focusId)) {
@@ -146,4 +153,6 @@
     }
     renderDetail(focusId);
   }
+
+  initCommon();
 })();

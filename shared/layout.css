@@ -109,3 +109,7 @@ button { cursor: pointer; }
   .header-actions { gap: 8px; }
   .footer-inner { flex-wrap: wrap; }
 }
+/* Keep the footer at the bottom on short pages */
+body { min-height: 100vh; display: flex; flex-direction: column; }
+body > main { flex: 1 0 auto; width: 100%; }
+body > .footer { margin-top: auto; }

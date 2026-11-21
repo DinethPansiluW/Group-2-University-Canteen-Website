@@ -196,8 +196,7 @@ button {
   letter-spacing: -2.5px;
   margin: 18px 0;
 }
-.hero h1 span,
-.order-inner h2 span {
+.hero h1 span {
   color: var(--green);
 }
 .hero-copy > p {
@@ -501,60 +500,6 @@ button {
 }
 .canteen-card {
   cursor: pointer;
-}
-.menu-section {
-  padding: 70px 0 88px;
-}
-.filters {
-  display: flex;
-  align-items: end;
-  gap: 12px;
-  flex-wrap: wrap;
-  padding: 16px;
-  background: #faf6ee;
-  border-radius: 14px;
-}
-.filter-field {
-  display: grid;
-  gap: 6px;
-  flex: 1;
-  min-width: 150px;
-}
-.filter-field span,
-.form-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: #6b5444;
-}
-.filter-field select,
-.form-label input,
-.form-label select {
-  width: 100%;
-  padding: 11px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: #fff;
-  color: var(--ink);
-  margin-top: 6px;
-  font-size: 13px;
-}
-.filter-field select {
-  margin-top: 0;
-}
-.check-filter {
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 5px;
-}
-.results-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20px 0 14px;
-  color: var(--muted);
-  font-size: 12px;
 }
 .footer {
   background: #2a170a;
@@ -1014,18 +959,8 @@ button {
   .add-button {
     width: 100%;
   }
-  .canteen-band,
-  .menu-section {
+  .canteen-band {
     padding: 48px 0;
-  }
-  .filter-field {
-    min-width: calc(50% - 6px);
-  }
-  .order-inner {
-    display: block;
-  }
-  .order-steps {
-    margin-top: 28px;
   }
   .footer-inner {
     flex-wrap: wrap;
@@ -1084,3 +1019,21 @@ button {
 .cart-row.unpicked .cart-emoji,
 .cart-row.unpicked .cart-row-info b,
 .cart-row.unpicked > strong { opacity: 0.45; }
+
+/* ---------- Form fields (checkout / owner panel) ---------- */
+.form-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b5444;
+}
+.form-label input,
+.form-label select {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--ink);
+  margin-top: 6px;
+  font-size: 13px;
+}

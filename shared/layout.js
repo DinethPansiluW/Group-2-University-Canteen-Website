@@ -7,6 +7,7 @@
   const PAGES = {
     home: 'index.html',
     about: 'html/about.html',
+    menu: 'html/menu.html',
     orders: 'html/orders.html',
     register: 'html/register.html',
     contact: 'html/contact.html',
@@ -16,7 +17,7 @@
   const LOGO = 'assets/ruhuna-2.png'; 
   const LOGO_HEIGHT = 34;       
   const LOGO_HEIGHT_FOOTER = 30;
-  const FOOTER_TAGLINE = '';
+  const FOOTER_TAGLINE = 'University of Ruhuna · Matara, Southern Province · Unofficial student project';
 
   const url = (p) => new URL(p, ROOT).href;
   const path = decodeURIComponent(location.pathname);
@@ -51,7 +52,7 @@
     <nav class="main-nav">
       ${link(homeHash('#home'), 'Home', onHome)}
       ${link(homeHash('#canteens'), 'Canteens')}
-      ${link(homeHash('#menu'), 'Menu')}
+      ${link(url(PAGES.menu), 'Menu', isActive(PAGES.menu))}
       ${link(url(PAGES.orders), 'Orders', isActive(PAGES.orders))}
       ${link(url(PAGES.about), 'About Us', isActive(PAGES.about))}
       ${link(url(PAGES.register), 'Register', isActive(PAGES.register))}

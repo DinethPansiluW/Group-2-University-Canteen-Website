@@ -1,11 +1,11 @@
 /* Orders page (Uber / PickMe style order history) */
 body { background: #fbf6ee; }
-.orders-page { padding: 34px 0 70px; max-width: 760px; }
+.orders-page { padding: 34px 0 70px; }
 .orders-top h1 { font: 700 34px/1.15 "Bricolage Grotesque", sans-serif; margin: 0 0 6px; }
 .orders-top p { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
 
 .orders-tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 16px; }
-.orders-search { flex: 1; min-width: 220px; display: flex; align-items: center; gap: 8px;
+.orders-search { flex: 1; min-width: 220px; max-width: 520px; display: flex; align-items: center; gap: 8px;
   background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 12px; }
 .orders-search input { border: 0; outline: 0; background: none; padding: 12px 0; width: 100%; font-size: 14px; }
 .orders-search:focus-within { border-color: var(--green); }
@@ -17,7 +17,9 @@ body { background: #fbf6ee; }
 .order-banner { background: #e8f6ea; border: 1px solid #bfe3c5; color: #1f6b30; border-radius: 14px;
   padding: 14px 16px; font-size: 14px; font-weight: 600; margin-bottom: 16px; display: flex; gap: 10px; align-items: center; }
 
-.order-list { display: grid; gap: 12px; }
+.order-list { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.order-list .empty { grid-column: 1 / -1; }
+@media (max-width: 860px) { .order-list { grid-template-columns: 1fr; } }
 .order-card { width: 100%; text-align: left; display: flex; align-items: center; gap: 14px; background: #fff;
   border: 1.5px solid var(--line); border-radius: 16px; padding: 16px; transition: 0.15s; font: inherit; color: inherit; }
 .order-card:hover { border-color: var(--green); transform: translateY(-1px); box-shadow: 0 6px 18px #4a2a1218; }
