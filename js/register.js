@@ -1,6 +1,7 @@
+/* ====== Keep this block in sync with CONFIG in home.js ====== */
 const CONFIG = {
   brand: { name: "Taste of ", accent: "Ruhuna", mark: "../assets/ruhuna-2.png" },
-  tagline: "University of Ruhuna · Matara, Southern Province · Unofficial student project",
+  tagline: "University of Ruhuna · Matara, Southern Province",
   faculties: [
     "Agriculture", "Engineering", "Fisheries & Marine Sciences and Technology",
     "Humanities & Social Sciences", "Management & Finance", "Medicine",
