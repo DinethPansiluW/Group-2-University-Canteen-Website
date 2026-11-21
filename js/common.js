@@ -46,7 +46,7 @@ document.body.insertAdjacentHTML("beforeend", `
       <input type="hidden" id="edit-food-id">
       <label class="form-label">Canteen<select id="owner-canteen"></select></label>
       <label class="form-label">Food name<input id="food-name" required placeholder="e.g. Chicken Kottu"></label>
-      <div class="form-two"><label class="form-label">Category<select id="food-category"></select></label><label class="form-label">Meal time<select id="food-meal"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option>All</option></select></label></div>
+      <div class="form-two"><label class="form-label">Category<select id="food-category"></select></label><label class="form-label">Meal time<select id="food-meal"><option>Breakfast</option><option>Lunch</option><option>Dinner</option><option value="All">Any time (shown in All food only)</option></select></label></div>
       <div class="form-two"><label class="form-label">Price<input id="food-price" type="number" min="0" required></label><label class="form-label">Quantity<input id="food-quantity" type="number" min="0" required></label></div>
       <label class="form-label">Description (optional)<input id="food-desc" maxlength="80"></label>
       <button class="button button-green full" type="submit" id="save-food">Add food item</button>
@@ -174,7 +174,19 @@ const starterFoods = [
     "Served chilled."),
 
   s("Wood Apple Juice", 2, "Juices", "All", 160, 12,
-    "Tangy divul juice.")
+    "Tangy divul juice."),
+
+  s("Chicken Fried Rice", 3, "Rice & Curry", "Dinner", 480, 15,
+    "Wok-fried rice with chicken and egg."),
+
+  s("Egg Kottu", 5, "Kottu", "Dinner", 380, 12,
+    "Chopped roti stir-fried with egg and vegetables."),
+
+  s("Pol Roti & Dhal Curry", 1, "Roti & Paratha", "Dinner", 150, 20,
+    "Coconut roti with creamy dhal curry."),
+
+  s("Vegetable Fried Rice", 0, "Rice & Curry", "Dinner", 350, 14,
+    "Fried rice with fresh mixed vegetables.")
 
 ];
 
@@ -393,8 +405,10 @@ function foodCard(f) {
 }
 
 
+// Breakfast shows only Breakfast items, Lunch only Lunch, Dinner only Dinner.
+// Items saved as "Any time" (All) appear only when "All" is selected.
 function matchesMeal(f, meal) {
-  return meal === "All" || f.meal === meal || f.meal === "All";
+  return meal === "All" || f.meal === meal;
 }
 
 
@@ -1181,6 +1195,17 @@ function initCommon() {
   // (kept between pages) could not find its items again after a page change.
   try {
     if (!localStorage.getItem(STORAGE.foods)) save();
+  } catch {}
+
+  // One-time: add starter Dinner items for browsers that saved the menu earlier
+  try {
+    if (!localStorage.getItem("ruhuna_dinner_seed_v1")) {
+      starterFoods
+        .filter(f => f.meal === "Dinner" && !foods.some(x => x.name === f.name))
+        .forEach(f => foods.push(f));
+      localStorage.setItem("ruhuna_dinner_seed_v1", "1");
+      save();
+    }
   } catch {}
 
   const { brand } = CONFIG;

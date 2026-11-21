@@ -20,7 +20,7 @@ function renderHome() {
 
   $("home-food-grid").innerHTML =
     list.map(foodCard).join("") ||
-    '<div class="empty-grid">No food listed for this meal time yet.</div>';
+    `<div class="empty-grid">No ${activeMeal.toLowerCase()} items yet. The owner can add them from the Owner panel.</div>`;
 
   $$(".meal-tab").forEach(b =>
     b.classList.toggle("active", b.dataset.meal === activeMeal)

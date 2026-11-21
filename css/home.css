@@ -304,7 +304,7 @@ button {
 }
 .meal-tabs {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin: 24px 0 40px;
 }
@@ -933,7 +933,7 @@ button {
   }
 
   .meal-tabs {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .section-heading {
     align-items: flex-start;
@@ -1036,4 +1036,8 @@ button {
   color: var(--ink);
   margin-top: 6px;
   font-size: 13px;
+}
+
+@media (max-width: 560px) {
+  .meal-tabs { grid-template-columns: 1fr; }
 }
