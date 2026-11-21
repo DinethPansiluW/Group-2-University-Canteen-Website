@@ -62,12 +62,6 @@
     <div class="food-grid" id="all-food-grid"></div>
   </section>
 
-  <section class="order-section" id="orders">
-    <div class="section-wrap order-inner">
-      <div><h2>Order now.<br><span>Pick up on campus.</span></h2><p>Add items to your cart, place your order and show your Order ID at the canteen counter.</p><button class="button button-green" id="view-orders">View my orders</button></div>
-      <div class="order-steps"><div><b>1</b><span>Choose food</span></div><div><b>2</b><span>Place your order</span></div><div><b>3</b><span>Collect with Order ID</span></div></div>
-    </div>
-  </section>
 </main>
 
 <div data-site-footer></div>
@@ -76,23 +70,30 @@
 <aside class="drawer" id="cart-drawer" aria-label="Cart">
   <div class="drawer-head"><h2>Your cart</h2><button class="close-button" id="cart-close" aria-label="Close">×</button></div>
   <div id="cart-items" class="cart-items"></div>
-  <div class="cart-footer"><div class="total-row"><span>Total</span><strong id="cart-total"></strong></div><button class="button button-green full" id="checkout-button">Continue to checkout</button><small>Demo checkout. No real payment is processed.</small></div>
+  <div class="cart-footer"><div class="total-row"><span>Total</span><strong id="cart-total"></strong></div><button class="button button-green full" id="checkout-button">Continue to checkout</button><small>You pay by card at checkout. Demo: no real payment is processed.</small></div>
 </aside>
 
 <div class="modal-backdrop" id="checkout-modal"><div class="modal">
   <button class="close-button modal-x" data-close="checkout-modal" aria-label="Close">×</button>
-  <h2>Confirm your order</h2><p class="muted">One canteen per order.</p>
-  <form id="checkout-form">
+  <h2>Confirm &amp; pay</h2><p class="muted">One canteen per order. Payment is required to place the order.</p>
+  <form id="checkout-form" autocomplete="off" novalidate>
     <label class="form-label">Student name<input id="student-name" required placeholder="Your name"></label>
     <label class="form-label">Student ID<input id="student-id" required placeholder="Your university ID"></label>
     <label class="form-label">Pickup canteen<select id="pickup-canteen" disabled></select></label>
-    <label class="form-label">Payment<select id="payment-method"><option>Cash on pickup</option><option>Online payment (demo only)</option></select></label>
+    <div class="pay-box">
+      <div class="pay-title">💳 Pay by card <span class="pay-demo">Demo</span></div>
+      <label class="form-label">Card number<input id="card-number" inputmode="numeric" maxlength="23" placeholder="4242 4242 4242 4242"></label>
+      <div class="form-two">
+        <label class="form-label">Expiry<input id="card-expiry" inputmode="numeric" maxlength="5" placeholder="MM/YY"></label>
+        <label class="form-label">CVV<input id="card-cvv" inputmode="numeric" maxlength="4" placeholder="123" type="password"></label>
+      </div>
+      <small class="pay-note">Demo only: no real payment is made and the card number is never saved (only the last 4 digits).</small>
+      <small class="field-error" id="pay-error"></small>
+    </div>
     <div class="checkout-total"><span>Order total</span><strong id="checkout-total"></strong></div>
-    <button class="button button-green full" type="submit">Place order</button>
+    <button class="button button-green full" type="submit" id="pay-button">Pay &amp; place order</button>
   </form>
 </div></div>
-
-<div class="modal-backdrop" id="orders-modal"><div class="modal wide-modal"><button class="close-button modal-x" data-close="orders-modal" aria-label="Close">×</button><h2>My orders</h2><div id="orders-list"></div></div></div>
 
 <div class="modal-backdrop" id="owner-modal"><div class="modal owner-modal">
   <button class="close-button modal-x" data-close="owner-modal" aria-label="Close">×</button>

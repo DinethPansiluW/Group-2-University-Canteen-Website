@@ -7,6 +7,7 @@
   const PAGES = {
     home: 'index.html',
     about: 'html/about.html',
+    orders: 'html/orders.html',
     register: 'html/register.html',
     contact: 'html/contact.html',
   };
@@ -51,7 +52,7 @@
       ${link(homeHash('#home'), 'Home', onHome)}
       ${link(homeHash('#canteens'), 'Canteens')}
       ${link(homeHash('#menu'), 'Menu')}
-      ${link(homeHash('#orders'), 'Orders')}
+      ${link(url(PAGES.orders), 'Orders', isActive(PAGES.orders))}
       ${link(url(PAGES.about), 'About Us', isActive(PAGES.about))}
       ${link(url(PAGES.register), 'Register', isActive(PAGES.register))}
       ${link(url(PAGES.contact), 'Contact Us', isActive(PAGES.contact))}

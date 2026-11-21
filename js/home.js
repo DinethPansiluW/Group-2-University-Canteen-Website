@@ -505,38 +505,6 @@ const itemsText = o =>
   o.items.map(i => `${esc(i.name)} × ${i.qty}`).join(", ");
 
 
-function renderOrders() {
-
-  $("orders-list").innerHTML = orders.length
-
-    ? orders.map(o => `<div class="order-history-card">
-
-        <div class="owner-order-head">
-
-          <div>
-            <h3>${esc(o.canteen)}</h3>
-            <p class="order-id">${esc(o.id)}</p>
-          </div>
-
-          <span class="status-badge order-badge">
-            ${esc(o.status)}
-          </span>
-
-        </div>
-
-        <p>${esc(o.created)} · ${esc(o.payment)}</p>
-
-        <p>${itemsText(o)}</p>
-
-        <strong>${money(o.total)}</strong>
-
-      </div>`).join("")
-
-    : '<div class="empty-state">You have not placed any orders yet.</div>';
-
-}
-
-
 function renderOwnerFoods() {
 
   $("owner-food-items").innerHTML = foods.map(f =>
@@ -718,6 +686,55 @@ function checkout() {
 }
 
 
+/* ---------- Payment helpers (demo) ---------- */
+
+const luhn = num => {
+  let sum = 0, alt = false;
+  for (let i = num.length - 1; i >= 0; i--) {
+    let n = Number(num[i]);
+    if (alt) { n *= 2; if (n > 9) n -= 9; }
+    sum += n; alt = !alt;
+  }
+  return sum % 10 === 0;
+};
+
+function validatePayment() {
+
+  const num = $("card-number").value.replace(/\s/g, "");
+  const exp = $("card-expiry").value.trim();
+  const cvv = $("card-cvv").value.trim();
+
+  if (!/^\d{13,19}$/.test(num) || !luhn(num))
+    return "Enter a valid card number.";
+
+  const m = exp.match(/^(0[1-9]|1[0-2])\/(\d{2})$/);
+  if (!m) return "Enter expiry as MM/YY.";
+
+  const endOfMonth = new Date(2000 + Number(m[2]), Number(m[1]), 0, 23, 59, 59);
+  if (endOfMonth < new Date()) return "This card has expired.";
+
+  if (!/^\d{3,4}$/.test(cvv)) return "Enter a valid CVV.";
+
+  return "";
+}
+
+$("card-number").addEventListener("input", e => {
+  e.target.value = e.target.value
+    .replace(/\D/g, "").slice(0, 19)
+    .replace(/(.{4})/g, "$1 ").trim();
+});
+
+$("card-expiry").addEventListener("input", e => {
+  let v = e.target.value.replace(/\D/g, "").slice(0, 4);
+  if (v.length > 2) v = v.slice(0, 2) + "/" + v.slice(2);
+  e.target.value = v;
+});
+
+$("card-cvv").addEventListener("input", e => {
+  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 4);
+});
+
+
 $("checkout-form").addEventListener("submit", e => {
 
   e.preventDefault();
@@ -727,65 +744,92 @@ $("checkout-form").addEventListener("submit", e => {
   if (!cart.length)
     return toast("Your cart changed. Please review it.");
 
-  const order = {
+  const name = $("student-name").value.trim();
+  const sid = $("student-id").value.trim();
 
-    id: "RU" +
-      Date.now().toString(36).toUpperCase().slice(-5) +
-      Math.random().toString(36).toUpperCase().slice(2, 5),
+  if (!name || !sid) {
+    $("pay-error").textContent = "Please enter your name and student ID.";
+    return;
+  }
 
-    student: $("student-name").value.trim(),
+  const err = validatePayment();
+  $("pay-error").textContent = err;
+  if (err) return;
 
-    studentId: $("student-id").value.trim(),
+  const btn = $("pay-button");
+  btn.disabled = true;
+  btn.textContent = "Processing payment…";
 
-    canteen: find(cart[0].id).canteen,
+  // Simulated payment. Only after "payment succeeds" is the order created.
+  setTimeout(() => {
 
-    payment: $("payment-method").value,
+    cleanCart();
 
-    items: cart.map(i => {
+    if (!cart.length) {
+      btn.disabled = false;
+      btn.textContent = "Pay & place order";
+      return toast("Your cart changed. Please review it.");
+    }
 
-      const f = find(i.id);
+    const last4 = $("card-number").value.replace(/\s/g, "").slice(-4);
+    const now = new Date();
 
-      f.quantity -= i.qty;
+    const order = {
 
-      return {
-        id: f.id,
-        name: f.name,
-        price: f.price,
-        qty: i.qty
-      };
+      id: "RU" +
+        Date.now().toString(36).toUpperCase().slice(-5) +
+        Math.random().toString(36).toUpperCase().slice(2, 5),
 
-    }),
+      student: name,
 
-    total: cartTotal(),
+      studentId: sid,
 
-    status: "Pending",
+      canteen: find(cart[0].id).canteen,
 
-    created: new Date().toLocaleString()
+      payment: "Card •••• " + last4,
 
-  };
+      paid: true,
 
-  orders.unshift(order);
+      items: cart.map(i => {
 
-  cart = [];
+        const f = find(i.id);
 
-  save();
+        f.quantity -= i.qty;
 
-  renderAll();
+        return {
+          id: f.id,
+          name: f.name,
+          price: f.price,
+          qty: i.qty
+        };
 
-  showModal("checkout-modal", false);
+      }),
 
-  renderOrders();
+      total: cartTotal(),
 
-  showModal("orders-modal");
+      status: "Pending",
 
-  $("checkout-form").reset();
+      created: now.toLocaleString(),
 
-  toast("Order placed. Keep your Order ID!");
+      createdAt: now.getTime()
+
+    };
+
+    orders.unshift(order);
+
+    cart = [];
+
+    save();
+
+    $("checkout-form").reset();
+
+    // Go straight to the Orders page and open this order's details
+    location.href = "html/orders.html?new=1&id=" + encodeURIComponent(order.id);
+
+  }, 900);
 
 });
 
-
- 
 
 function openOwner() {
 
@@ -928,8 +972,6 @@ function setOrderStatus(id, status) {
   save();
 
   renderAll();
-
-  renderOrders();
 
   toast("Order status updated");
 
@@ -1125,15 +1167,6 @@ $("checkout-button").addEventListener("click", checkout);
 $("owner-open").addEventListener("click", openOwner);
 
 
-$("view-orders").addEventListener("click", () => {
-
-  renderOrders();
-
-  showModal("orders-modal");
-
-});
-
-
 $("cancel-edit").addEventListener("click", resetFoodForm);
 
 
@@ -1269,7 +1302,8 @@ function init() {
   renderAll();
 
 
-  const links = [...$(".nav-link")];
+  const links = [...$$(".nav-link")]
+    .filter(l => (l.getAttribute("href") || "").startsWith("#"));
 
   const spy = new IntersectionObserver(es =>
 
