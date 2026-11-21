@@ -1,4 +1,225 @@
-/* services.css: consolidated styles for services & benefits page */
+
+
+:root {
+  --maroon: #6b1420;
+  --maroon-deep: #2a0c10;
+  --gold: #f0b323;
+  --paper: #fbf9f5;
+  --blush: #f6ece8;
+  --green: #7a4a1e;
+  --green-dark: #4a2a12;
+  --green-pale: #f8ecd2;
+  --ink: #2b1a0e;
+  --muted: #75655a;
+  --line: #eadfce;
+  --danger: #bb4444;
+  --danger-pale: #ffeded;
+
+  --font-head: "Bricolage Grotesque", "Noto Sans Sinhala", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "DM Sans", "Noto Sans Sinhala", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: #fff;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+.si {
+  font-family: "Noto Sans Sinhala", sans-serif;
+}
+
+/* ---------- layout ---------- */
+.section-wrap {
+  width: min(1160px, calc(100% - 48px));
+  margin: auto;
+}
+
+/* ---------- header & navigation ---------- */
+.site-header {
+  height: 74px;
+  padding: 0 max(24px, calc((100vw - 1160px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  font: 800 22px var(--font-head);
+  letter-spacing: -0.8px;
+}
+
+.brand-green {
+  color: var(--green);
+}
+
+.brand-mark {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background: var(--gold);
+  color: #3b2210;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+
+.brand-mark.has-logo {
+  background: none;
+  padding: 0;
+  min-width: 0;
+  height: 42px;
+}
+
+.brand-mark.has-logo img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.footer .brand-mark.has-logo {
+  height: 36px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.main-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #6b5444;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ---------- buttons ---------- */
+.button,
+a.button {
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: 0.2s;
+}
+
+a.button {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.button:hover,
+a.button:hover {
+  filter: brightness(0.95);
+}
+
+.button-green {
+  background: var(--green);
+  color: #fff;
+}
+
+.button-dark {
+  background: #3b2210;
+  color: #fff;
+}
+
+.button.small,
+a.button.small {
+  padding: 10px 15px;
+}
+
+/* ---------- hero ---------- */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--green);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hero h1 {
+  font: 800 clamp(38px, 5vw, 58px)/1.06 var(--font-head);
+  letter-spacing: -2px;
+  margin: 18px 0;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero-copy > p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0;
+}
 
 .services-hero {
   padding: 56px 0 64px;
@@ -32,7 +253,7 @@
   display: grid;
   place-items: center;
   font-size: 26px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .highlight-box b {
@@ -57,8 +278,9 @@
 
 .content-section.alt-bg {
   background: #faf6ee;
+  border-top: 0;
   border-radius: 20px;
-  margin: 40px auto;
+  margin: 20px auto 72px;
   padding: 60px 40px;
 }
 
@@ -69,7 +291,7 @@
 }
 
 .section-header h2 {
-  font: 700 32px var(--font-head, "Bricolage Grotesque"), sans-serif;
+  font: 700 32px var(--font-head);
   letter-spacing: -1px;
   margin: 10px 0 12px;
   color: var(--ink);
@@ -85,7 +307,7 @@
 /* ---------- Services Grid ---------- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
 }
 
@@ -95,12 +317,12 @@
   border-radius: 16px;
   padding: 28px;
   transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(59,34,16,0.03);
+  box-shadow: 0 4px 16px rgba(59, 34, 16, 0.03);
 }
 
 .service-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(59,34,16,0.08);
+  box-shadow: 0 12px 30px rgba(59, 34, 16, 0.08);
 }
 
 .service-icon {
@@ -115,7 +337,7 @@
 }
 
 .service-card h3 {
-  font: 700 18px var(--font-head, "Bricolage Grotesque"), sans-serif;
+  font: 700 18px var(--font-head);
   margin: 0 0 10px;
   color: var(--ink);
 }
@@ -143,11 +365,11 @@
   display: flex;
   align-items: flex-start;
   gap: 24px;
-  box-shadow: 0 4px 12px rgba(59,34,16,0.02);
+  box-shadow: 0 4px 12px rgba(59, 34, 16, 0.02);
 }
 
 .benefit-num {
-  font: 800 20px var(--font-head, "Bricolage Grotesque"), sans-serif;
+  font: 800 20px var(--font-head);
   color: var(--green);
   background: var(--green-pale);
   width: 44px;
@@ -159,7 +381,7 @@
 }
 
 .benefit-row h3 {
-  font: 700 17px var(--font-head, "Bricolage Grotesque"), sans-serif;
+  font: 700 17px var(--font-head);
   margin: 0 0 6px;
   color: var(--ink);
 }
@@ -171,30 +393,50 @@
   margin: 0;
 }
 
-/* ---------- Brand Mark / Logo Fix ---------- */
-.brand-mark {
-  min-width: 34px;
-  height: 34px;
-  padding: 0 6px;
-  border-radius: 11px;
-  background: var(--gold);
-  color: #3b2210;
-  font-weight: 800;
-  display: grid;
-  place-items: center;
-  font-size: 18px;
+/* ---------- toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 20px);
+  background: #3b2210;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+  z-index: 80;
 }
 
-.brand-mark.has-logo {
-  padding: 0;
-  background: none;
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
-.brand-mark img {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  display: block;
+/* ---------- footer ---------- */
+.footer {
+  background: #2a170a;
+  color: #d9c6ad;
+  padding: 26px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.footer .brand {
+  color: #fff;
+  font-size: 19px;
+}
+
+.footer p {
+  font-size: 12px;
+  margin: 0;
 }
 
 /* ---------- Responsive Layout ---------- */
@@ -204,15 +446,41 @@
     gap: 30px;
     padding: 40px 0;
   }
+
   .content-section.alt-bg {
     padding: 40px 20px;
   }
 }
 
 @media (max-width: 650px) {
+  .section-wrap {
+    width: calc(100% - 32px);
+  }
+
+  .site-header {
+    height: auto;
+    padding: 10px 16px;
+    flex-wrap: wrap;
+  }
+
+  .main-nav {
+    order: 3;
+    width: 100%;
+    gap: 20px;
+    overflow-x: auto;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
   .benefit-row {
     flex-direction: column;
     gap: 14px;
     padding: 20px;
+  }
+
+  .footer-inner {
+    flex-wrap: wrap;
   }
 }
