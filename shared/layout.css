@@ -124,3 +124,5 @@ body > .footer { margin-top: auto; }
 .footer-links a { color: #d9c6ad; font-size: 13px; text-decoration: none; }
 .footer-links a:hover { color: #fff; text-decoration: underline; }
 @media (max-width: 650px) { .footer-about { flex-direction: column; gap: 20px; } }
+.profile-button { color: var(--green-dark); display: inline-flex; align-items: center; justify-content: center; }
+.profile-button:hover { background: #ecdfcb; }

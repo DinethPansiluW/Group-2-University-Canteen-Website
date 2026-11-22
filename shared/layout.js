@@ -60,8 +60,9 @@
     </nav>
     ${withActions ? `
     <div class="header-actions">
-      <button class="icon-button" id="cart-open" aria-label="Open cart">🛒<span id="cart-count" class="cart-count">0</span></button>
       <button class="button button-dark small" id="owner-open">Owner panel</button>
+      <button class="icon-button" id="cart-open" aria-label="Open cart">🛒<span id="cart-count" class="cart-count">0</span></button>
+      <button class="icon-button profile-button" id="profile-open" aria-label="Profile"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg></button>
     </div>` : ''}
   </header>`;
 

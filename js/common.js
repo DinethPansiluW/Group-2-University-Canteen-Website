@@ -871,11 +871,48 @@ $("checkout-form").addEventListener("submit", e => {
 });
 
 
-function openOwner() {
+/* Small PIN dialog (replaces the browser prompt so the input can show a placeholder) */
+function askPin() {
+
+  return new Promise((resolve) => {
+
+    const wrap = document.createElement("div");
+    wrap.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(43,26,14,.55);display:flex;align-items:center;justify-content:center;padding:16px;";
+    wrap.innerHTML =
+      '<div style="background:#fff;border-radius:16px;padding:24px;width:min(340px,100%);box-shadow:0 20px 50px rgba(0,0,0,.25);font-family:inherit;">' +
+        '<h3 style="margin:0 0 6px;font-size:18px;color:#2b1a0e;">Owner panel</h3>' +
+        '<p style="margin:0 0 14px;font-size:13px;color:#75655a;">Enter owner PIN</p>' +
+        '<input type="password" id="pin-input" placeholder="1234" autocomplete="off" ' +
+          'style="width:100%;box-sizing:border-box;padding:12px;font:inherit;border:1.5px solid #eadfce;border-radius:10px;margin-bottom:16px;">' +
+        '<div style="display:flex;gap:10px;justify-content:flex-end;">' +
+          '<button type="button" id="pin-cancel" style="border:0;background:#f1e8da;color:#2b1a0e;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;">Cancel</button>' +
+          '<button type="button" id="pin-ok" style="border:0;background:#3b2210;color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;">Unlock</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(wrap);
+
+    const input = wrap.querySelector("#pin-input");
+    const done = (value) => { wrap.remove(); resolve(value); };
+
+    wrap.querySelector("#pin-ok").addEventListener("click", () => done(input.value));
+    wrap.querySelector("#pin-cancel").addEventListener("click", () => done(null));
+    wrap.addEventListener("click", (e) => { if (e.target === wrap) done(null); });
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") done(input.value);
+      if (e.key === "Escape") done(null);
+    });
+    input.focus();
+
+  });
+
+}
+
+
+async function openOwner() {
 
   if (!ownerUnlocked) {
 
-    const pin = prompt("Enter owner PIN");
+    const pin = await askPin();
 
     if (pin === null) return;
 
@@ -1140,7 +1177,8 @@ $("cart-overlay").addEventListener("click", () =>
 $("checkout-button").addEventListener("click", checkout);
 
 
-$("owner-open").addEventListener("click", openOwner);
+const ownerBtn = $("owner-open");
+if (ownerBtn) ownerBtn.addEventListener("click", openOwner);
 
 
 $("cancel-edit").addEventListener("click", resetFoodForm);
