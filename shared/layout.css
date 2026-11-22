@@ -113,3 +113,14 @@ button { cursor: pointer; }
 body { min-height: 100vh; display: flex; flex-direction: column; }
 body > main { flex: 1 0 auto; width: 100%; }
 body > .footer { margin-top: auto; }
+
+/* Mission text inside the footer (single, subtle block) */
+.footer-about { display: flex; justify-content: space-between; align-items: flex-start; gap: 48px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.footer-about h3 { margin: 0 0 6px; color: #fff; font: 700 15px "Bricolage Grotesque", sans-serif; }
+.footer .footer-about p { max-width: 760px; font-size: 13px; line-height: 1.7; color: #bfa98d; }
+.footer-about-text { flex: 1; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; min-width: 150px; }
+.footer-links h3 { margin: 0 0 4px; color: #fff; font: 700 15px "Bricolage Grotesque", sans-serif; }
+.footer-links a { color: #d9c6ad; font-size: 13px; text-decoration: none; }
+.footer-links a:hover { color: #fff; text-decoration: underline; }
+@media (max-width: 650px) { .footer-about { flex-direction: column; gap: 20px; } }
