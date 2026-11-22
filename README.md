@@ -43,12 +43,12 @@ A multi-page web application for the University of Ruhuna canteen that displays 
 
 - 🧭 Shared dynamic navigation bar and footer injected across all pages (`shared/layout.js` & `shared/layout.css`)
 - 📋 Interactive Menu page with categories, pricing, filtering, and search (`js/menu.js`)
-- 🔐 Student/Staff Registration and Login authentication system (`html/register.html`, `html/login.html`)[cite: 1]
-- 👤 User Profile and Order History tracking (`html/profile.html`, `html/orders.html`)[cite: 1]
-- ⭐ Canteen Services & Features showcase (`html/features.html`)[cite: 1]
-- 🕒 Canteen opening hours, location, and general information (`html/about.html`)[cite: 1]
-- 📨 Contact page with JavaScript form validation (`html/contact.html`)[cite: 1]
-- 🎨 Modular CSS stylesheets tailored per page for maintainable styling[cite: 1]
+- 🔐 Student/Staff Registration and Login authentication system (`html/register.html`, `html/login.html`)
+- 👤 User Profile and Order History tracking (`html/profile.html`, `html/orders.html`)
+- ⭐ Canteen Services & Features showcase (`html/features.html`)
+- 🕒 Canteen opening hours, location, and general information (`html/about.html`)
+- 📨 Contact page with JavaScript form validation (`html/contact.html`)
+- 🎨 Modular CSS stylesheets tailored per page for maintainable styling
 
 ---
 
@@ -68,15 +68,15 @@ A multi-page web application for the University of Ruhuna canteen that displays 
 
 | Page | File | Description |
 |------|------|-------------|
-| Home | `index.html`[cite: 1] | Welcome section, highlights, and quick links |
-| About | `html/about.html`[cite: 1] | Canteen information, opening hours, location, and background |
-| Menu | `html/menu.html`[cite: 1] | Food items and prices with category filter, search, and ordering |
-| Services / Features | `html/features.html`[cite: 1] | Canteen facilities, special services, and highlights |
-| Contact | `html/contact.html`[cite: 1] | Contact details and feedback/enquiry form |
-| Login | `html/login.html`[cite: 1] | User login interface and validation |
-| Registration | `html/register.html`[cite: 1] | New user account registration form |
-| Orders | `html/orders.html`[cite: 1] | View and manage placed food orders |
-| Profile | `html/profile.html`[cite: 1] | View and manage user profile details |
+| Home | `index.html` | Welcome section, highlights, and quick links |
+| About | `html/about.html` | Canteen information, opening hours, location, and background |
+| Menu | `html/menu.html` | Food items and prices with category filter, search, and ordering |
+| Services / Features | `html/features.html` | Canteen facilities, special services, and highlights |
+| Contact | `html/contact.html` | Contact details and feedback/enquiry form |
+| Login | `html/login.html` | User login interface and validation |
+| Registration | `html/register.html` | New user account registration form |
+| Orders | `html/orders.html` | View and manage placed food orders |
+| Profile | `html/profile.html` | View and manage user profile details |
 
 ---
 
@@ -123,7 +123,7 @@ Group-2-University-Canteen-Website/
 │   └── layout.js
 ├── index.html
 └── README.md
-```[cite: 1]
+```
 
 ---
 
@@ -135,3 +135,95 @@ No installation or build step is required.
    ```bash
    git clone <repository-url>
    cd Group-2-University-Canteen-Website
+   ```
+
+2. **Open the website**
+   - Double-click `index.html` to open it in your browser, **or**
+   - In VS Code, right-click `index.html` and choose **Open with Live Server** (recommended).
+
+---
+
+## 👥 Team Members and Responsibilities
+
+| Student | Role | Name | SC Number | Responsibility | Branch |
+|---------|------|------|-----------|----------------|--------|
+| Student 1 | Team Leader | D.P. Wickramasinghe | SC/CS/2025/14962 | Repository management, shared layout (`shared/`), Menu/Orders/Profile integration, PR reviews and merging | `main` (reviews all PRs) |
+| Student 2 | Member | M. Poojani Hirunima | SC/CS/2025/14965 | Home page (`index.html`, `css/home.css`, `js/home.js`) | `feature/home` |
+| Student 3 | Member | W.W.M.I.H. Weerasinghe | SC/CS/2025/14967 | About / Information page (`html/about.html`, `css/about1.css`, `css/about2.css`) | `feature/about` |
+| Student 4 | Member | P.K.M. Mihiranga | SC/CS/2025/14963 | Login, Registration & Services pages (`html/login.html`, `html/register.html`, `html/features.html`) | `feature/login`, `feature/registration`, `feature/services` |
+| Student 5 | Member | R.M.S.P.A. Bandara | SC/CS/2025/14964 | Contact page (`html/contact.html`, `js/script.js`) | `feature/contact` |
+
+---
+
+## 🔀 Git and GitHub Workflow
+
+1. **Create repository** (Team Leader), named `Group-2-University-Canteen-Website`.
+2. **Add collaborators**: the Team Leader invites the other four members, who accept the invitation.
+3. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Group-2-University-Canteen-Website
+   git branch
+   ```
+4. **Create and switch to a feature branch**
+   ```bash
+   git switch -c feature/home
+   git switch -c feature/about
+   git switch -c feature/services
+   git switch -c feature/login
+   git switch -c feature/registration
+   git switch -c feature/contact
+   ```
+5. **Develop** the assigned pages using HTML, CSS, and JavaScript.
+6. **Commit and push**
+   ```bash
+   git status
+   git add .
+   git commit -m "Add assigned feature page"
+   git push -u origin <branch-name>
+   ```
+7. **Create a Pull Request** from your feature branch to `main` with a clear title and short description.
+8. **Review and merge**: the Team Leader reviews each Pull Request and merges approved work into `main`.
+9. **Update local repository**
+   ```bash
+   git switch main
+   git pull origin main
+   ```
+10. **Verify** that all members' contributions are present and working together seamlessly.
+
+---
+
+## ⚔️ Merge Conflict Activity
+
+To practise conflict resolution, two members edit the **same line** of a common file (e.g. `shared/layout.js` or `css/style.css`) in two different branches. After merging the first branch, the second Pull Request shows a conflict, which is resolved as follows:
+
+1. Open the conflicted file in VS Code.
+2. Resolve using the **Merge Editor** (Accept Current / Incoming / Both) or edit manually, removing the `<<<<<<<`, `=======` and `>>>>>>>` markers.
+3. Complete the merge:
+   ```bash
+   git add .
+   git commit -m "Resolve merge conflict"
+   git push
+   ```
+
+---
+
+## 📝 Commit Message Guidelines
+
+Use short, clear, present-tense messages:
+
+```text
+Add home page layout and styles
+Add shared navigation bar and footer
+Style menu cards with CSS
+Add menu search and filter script
+Add login and registration validation
+Fix broken link on contact page
+Resolve merge conflict
+```
+
+---
+
+## 📄 License
+
+This project was created for educational purposes as part of the **CSC1153** laboratory assignments at the University of Ruhuna.
