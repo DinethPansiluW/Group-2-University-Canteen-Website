@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-</head>
-<body>
-    <header>
-        <title>Registration</title>
-    </header>
-     
-    
-</body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register | University of Ruhuna Canteens</title>
+<title>Register | Taste of Ruhuna</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:wght@600;700;800&family=Noto+Sans+Sinhala:wght@500;700&display=swap" rel="stylesheet">
-<!-- home.css supplies the shared theme (variables, header, buttons, modal, toast). register.css only adds what this page needs. -->
 <link rel="stylesheet" href="../css/home.css">
 <link rel="stylesheet" href="../css/register.css">
- <link rel="stylesheet" href="../shared/layout.css">
+<link rel="stylesheet" href="../shared/layout.css">
 </head>
 <body>
 <div data-site-header data-actions></div>
@@ -55,13 +42,17 @@
             <small class="field-error" id="err-student-id"></small>
           </label>
           <label class="form-label" for="academic-year">Academic year
-            <select id="academic-year" name="year" aria-describedby="err-academic-year"></select>
+            <select id="academic-year" name="year" aria-describedby="err-academic-year">
+              <option value="">Select year</option>
+            </select>
             <small class="field-error" id="err-academic-year"></small>
           </label>
         </div>
 
         <label class="form-label" for="faculty">Faculty
-          <select id="faculty" name="faculty" aria-describedby="err-faculty"></select>
+          <select id="faculty" name="faculty" aria-describedby="err-faculty">
+            <option value="">Select faculty</option>
+          </select>
           <small class="field-error" id="err-faculty"></small>
         </label>
 
@@ -101,7 +92,6 @@
   </section>
 </main>
 
-
 <div class="modal-backdrop" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title">
   <div class="modal success-modal">
     <div class="success-icon" aria-hidden="true">✓</div>
@@ -114,9 +104,8 @@
 </div>
 
 <div class="toast" id="toast" role="status"></div>
-<script src="../js/register.js"></script>
 <div data-site-footer></div>
 
-    <script src="../shared/layout.js"></script>
+<script src="../js/register.js"></script>
 </body>
 </html>
