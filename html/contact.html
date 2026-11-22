@@ -46,8 +46,8 @@
   .hero p { max-width: 460px; line-height: 1.7; font-size: 16px; margin: 0; }
 
   /* ---------- Two boxes side by side ---------- */
-  .page { display: flex; gap: 24px; padding-bottom: 50px; }
-  .card { flex: 1; background: #fff; border: 1.5px solid var(--line); border-radius: 18px; padding: 26px;
+  .page { display: flex; flex-direction: column; gap: 24px; padding-bottom: 50px; }
+  .card { background: #fff; border: 1.5px solid var(--line); border-radius: 18px; padding: 26px;
           box-shadow: 0 8px 24px rgba(122, 74, 30, 0.07); }
   .card h2 { margin: 0 0 6px; font-size: 26px; font-weight: 800; }
   .card .sub { margin: 0 0 18px; font-size: 14px; }
@@ -69,6 +69,24 @@
   .item b { color: var(--dark); display: block; font-size: 15px; }
   .item small { font-size: 13px; }
   .item a { color: var(--brown); font-weight: 700; }
+
+
+  /* Canteen cards (Find us) */
+  .canteen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .canteen-card { background: #fff; border: 1.5px solid var(--line); border-radius: 18px; padding: 18px 20px;
+                  display: flex; flex-direction: column; gap: 8px; }
+  .canteen-card__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .canteen-card__name { margin: 0; font-size: 17px; font-weight: 800; line-height: 1.2; }
+  .canteen-card__badge { background: #f8ebc8; color: #1a7a2e; font-size: 12px; font-weight: 700;
+                         padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
+  .canteen-card__badge.closed { color: #b3372c; }
+  .canteen-card__row { margin: 0; font-size: 13.5px; line-height: 1.5; }
+  .canteen-card__row b { color: var(--text); }
+  .canteen-card__specialty { background: #f7ead0; color: var(--dark); font-size: 13px; font-weight: 700;
+                             padding: 12px 14px; border-radius: 12px; line-height: 1.4; margin-top: 4px; }
+  .canteen-card__link { margin-top: auto; color: var(--brown); font-size: 13px; font-weight: 700;
+                        padding-top: 4px; text-decoration: underline; }
+  .canteen-card__link:hover { text-decoration: underline; }
 
   @media (max-width: 760px) {
     .page { flex-direction: column; }
@@ -93,7 +111,77 @@
 
   <div class="page">
 
-    <!-- Left: form -->
+    <!-- Top: details -->
+    <div class="card">
+      <h2>Find us</h2>
+      <p class="sub">Canteens, University of Ruhuna, Sri Lanka</p>
+
+      <div class="canteen-grid">
+        <article class="canteen-card">
+          <div class="canteen-card__head">
+            <h3 class="canteen-card__name">Science Canteen</h3>
+            <span class="canteen-card__badge" data-status>Open Now</span>
+          </div>
+          <p class="canteen-card__row"><b>Phone:</b> 0410 123 461</p>
+          <p class="canteen-card__row"><b>Hours:</b> Mon – Fri, 7:30 AM – 6:00 PM</p>
+          <div class="canteen-card__specialty">Specialty: String Hoppers, Short Eats, Tea</div>
+          <a class="canteen-card__link" href="https://www.google.com/maps/place/Faculty+of+Science+-+University+of+Ruhuna/@5.9393747,80.5770322,21z/data=!4m10!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m6!1s0x3ae1391b54d711c3:0x32cf0450fac521e3!8m2!3d5.939459!4d80.5771375!15sCi5GYWN1bHR5IG9mIFNjaWVuY2UgVW5pdmVyc2l0eSBvZiBSdWh1bmEgTWF0YXJhkgEKdW5pdmVyc2l0eeABAA!16s%2Fg%2F11gczw2nm0?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Open in Google Map</a>
+        </article>
+        <article class="canteen-card">
+          <div class="canteen-card__head">
+            <h3 class="canteen-card__name">Art Canteen</h3>
+            <span class="canteen-card__badge" data-status>Open Now</span>
+          </div>
+          <p class="canteen-card__row"><b>Phone:</b> 0410 123 462</p>
+          <p class="canteen-card__row"><b>Hours:</b> Mon – Fri, 7:30 AM – 6:00 PM</p>
+          <div class="canteen-card__specialty">Specialty: Rice &amp; Curry, Kottu, Fresh Juices</div>
+          <a class="canteen-card__link" href="https://www.google.com/maps/place/WHQG%2B9RM+Art+Faculty+Canteen,+University+of+Ruhuna,+A2,+Matara/@5.9390946,80.5759218,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae1391b4ae09319:0x4b7e2c874e86d315!8m2!3d5.938596!4d80.5771954!16s%2Fg%2F11gz88whm?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Open in Google Map</a>
+        </article>
+        <article class="canteen-card">
+          <div class="canteen-card__head">
+            <h3 class="canteen-card__name">Staff Canteen</h3>
+            <span class="canteen-card__badge" data-status>Open Now</span>
+          </div>
+          <p class="canteen-card__row"><b>Phone:</b> 0410 123 463</p>
+          <p class="canteen-card__row"><b>Hours:</b> Mon – Fri, 7:30 AM – 6:00 PM</p>
+          <div class="canteen-card__specialty">Specialty: Traditional Meals, Herbal Drinks</div>
+          <a class="canteen-card__link" href="https://www.google.com/maps/place/Staff+Canteen,+University+of+Ruhuna,+A2,+Matara/@5.9373018,80.5755463,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae1391b3aa36e85:0xe1711574a368f104!8m2!3d5.93775!4d80.5764514!16s%2Fg%2F11h17912m?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Open in Google Map</a>
+        </article>
+        <article class="canteen-card">
+          <div class="canteen-card__head">
+            <h3 class="canteen-card__name">Santhanagaraya Cafeteria</h3>
+            <span class="canteen-card__badge" data-status>Open Now</span>
+          </div>
+          <p class="canteen-card__row"><b>Phone:</b> 0410 123 464</p>
+          <p class="canteen-card__row"><b>Hours:</b> Mon – Fri, 7:30 AM – 6:00 PM</p>
+          <div class="canteen-card__specialty">Specialty: Fried Rice, Hoppers, Snacks</div>
+          <a class="canteen-card__link" href="https://www.google.com/maps/place/Santhanagaraya+Cafeteria/@5.9381128,80.5761927,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae13904c6bdb32f:0x10804db7427d49b9!8m2!3d5.9380958!4d80.5780743!16s%2Fg%2F1tgg8d10?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Open in Google Map</a>
+        </article>
+        <article class="canteen-card">
+          <div class="canteen-card__head">
+            <h3 class="canteen-card__name">Management Canteen</h3>
+            <span class="canteen-card__badge" data-status>Open Now</span>
+          </div>
+          <p class="canteen-card__row"><b>Phone:</b> 0410 123 465</p>
+          <p class="canteen-card__row"><b>Hours:</b> Mon – Fri, 7:30 AM – 6:00 PM</p>
+          <div class="canteen-card__specialty">Specialty: Biryani, Buns, Cool Drinks</div>
+          <a class="canteen-card__link" href="https://www.google.com/maps/place/Management+canteen/@5.9365895,80.5758064,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae13900354045bb:0x527d1eb97fb2a856!8m2!3d5.9362003!4d80.577444!16s%2Fg%2F11y4kqp810?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Open in Google Map</a>
+        </article>
+      </div>
+
+      <div class="item">
+        <div class="icon">📞</div>
+        <div><b>Head Office Number</b><small>0410 123 456</small></div>
+      </div>
+
+      <div class="item">
+        <div class="icon">✉️</div>
+        <div><b>Email</b><small>ruhunacanteens@example.com</small></div>
+      </div>
+    </div>
+
+
+    <!-- Below: form -->
     <div class="card">
       <h2>Send a message</h2>
       <p class="sub">We reply within one working day.</p>
@@ -109,46 +197,6 @@
 
       <button onclick="sendMessage()">Send message</button>
       <p id="message"></p>
-    </div>
-
-    <!-- Right: details -->
-    <div class="card">
-      <h2>Find us</h2>
-      <p class="sub">Canteens, University of Ruhuna, Sri Lanka</p>
-
-      <div class="item">
-        <div class="icon">📍</div>
-        <div><b>Location</b><small> Science Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
-        <small><a href="https://www.google.com/maps/place/Faculty+of+Science+-+University+of+Ruhuna/@5.9393747,80.5770322,21z/data=!4m10!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m6!1s0x3ae1391b54d711c3:0x32cf0450fac521e3!8m2!3d5.939459!4d80.5771375!15sCi5GYWN1bHR5IG9mIFNjaWVuY2UgVW5pdmVyc2l0eSBvZiBSdWh1bmEgTWF0YXJhkgEKdW5pdmVyc2l0eeABAA!16s%2Fg%2F11gczw2nm0?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Science Canteen</a></small></div>
-        <div class="icon">📍</div>
-        <div><b>Location</b><small> Art Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
-        <small><a href="https://www.google.com/maps/place/WHQG%2B9RM+Art+Faculty+Canteen,+University+of+Ruhuna,+A2,+Matara/@5.9390946,80.5759218,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae1391b4ae09319:0x4b7e2c874e86d315!8m2!3d5.938596!4d80.5771954!16s%2Fg%2F11gz88whm?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Art Canteen</a></small></div>
-        <div class="icon">📍</div>
-        <div><b>Location</b><small> Staff Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
-        <small><a href="https://www.google.com/maps/place/Staff+Canteen,+University+of+Ruhuna,+A2,+Matara/@5.9373018,80.5755463,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae1391b3aa36e85:0xe1711574a368f104!8m2!3d5.93775!4d80.5764514!16s%2Fg%2F11h17912m?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Staff Canteen</a></small></div>
-        <div class="icon">📍</div>
-        <div><b>Location</b><small> Santhanagaraya Cafeteria, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
-        <small><a href="https://www.google.com/maps/place/Santhanagaraya+Cafeteria/@5.9381128,80.5761927,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae13904c6bdb32f:0x10804db7427d49b9!8m2!3d5.9380958!4d80.5780743!16s%2Fg%2F1tgg8d10?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Santhanagaraya Canteen</a></small></div>
-        <div class="icon">📍</div>
-        <div><b>Location</b><small> Management Canteen, University of Ruhuna, Wellamadama, Matara, Sri Lanka</small><br>
-        <small><a href="https://www.google.com/maps/place/Management+canteen/@5.9365895,80.5758064,19z/data=!4m9!1m2!2m1!1sFaculty+of+Science+University+of+Ruhuna+Matara!3m5!1s0x3ae13900354045bb:0x527d1eb97fb2a856!8m2!3d5.9362003!4d80.577444!16s%2Fg%2F11y4kqp810?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Map of Management Canteen</a></small></div>
-        
-      </div>
-
-      <div class="item">
-        <div class="icon">📞</div>
-        <div><b>Phone</b><small>0410 123 456</small></div>
-      </div>
-
-      <div class="item">
-        <div class="icon">✉️</div>
-        <div><b>Email</b><small>ruhunacanteens@example.com</small></div>
-      </div>
-
-      <div class="item">
-        <div class="icon">🕒</div>
-        <div><b>Opening hours</b><small>Monday to Friday, 7:30 am - 6:00 pm</small></div>
-      </div>
     </div>
 
   </div>
@@ -168,6 +216,16 @@
     document.getElementById("message").style.color = "#2e7d4f";
     document.getElementById("message").innerText = "Thank you, " + name + "! Your message was sent.";
   }
+
+  // Open Now / Closed badge (Mon-Fri, 7:30 am - 6:00 pm)
+  (function () {
+    var now = new Date(), day = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
+    var open = day >= 1 && day <= 5 && mins >= 450 && mins < 1080;
+    document.querySelectorAll("[data-status]").forEach(function (b) {
+      b.textContent = open ? "Open Now" : "Closed";
+      b.classList.toggle("closed", !open);
+    });
+  })();
 </script>
 
 <div data-site-footer></div>
