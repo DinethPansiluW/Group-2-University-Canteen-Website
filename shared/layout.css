@@ -126,3 +126,32 @@ body > .footer { margin-top: auto; }
 @media (max-width: 650px) { .footer-about { flex-direction: column; gap: 20px; } }
 .profile-button { color: var(--green-dark); display: inline-flex; align-items: center; justify-content: center; }
 .profile-button:hover { background: #ecdfcb; }
+
+/* Login / Register pages: single centred card (left text removed) */
+.register-hero { grid-template-columns: minmax(0, 640px); justify-content: center; }
+
+/* Account modal opened from the profile icon */
+.auth-backdrop { position: fixed; inset: 0; z-index: 10000; display: none; align-items: center; justify-content: center;
+  padding: 16px; background: rgba(43, 26, 14, 0.55); }
+.auth-backdrop.show { display: flex; }
+body.auth-open { overflow: hidden; }
+.auth-box { position: relative; background: #fff; border-radius: 18px; width: min(760px, 100%); max-height: calc(100vh - 32px);
+  padding: 28px 36px 20px; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; }
+.auth-box h2 { margin: 0; text-align: center; font: 700 28px "Bricolage Grotesque", sans-serif; color: #2b1a0e; }
+.auth-sub { margin: 8px 0 20px; text-align: center; color: #75655a; font-size: 15px; }
+.auth-close { position: absolute; top: 14px; right: 18px; border: 0; background: none; font-size: 30px; line-height: 1; color: #75655a; cursor: pointer; }
+.auth-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 6px; background: #f4ecdf; border-radius: 12px; margin-bottom: 14px; }
+.auth-tab { border: 0; background: transparent; padding: 12px; border-radius: 9px; font-family: inherit; font-weight: 700; font-size: 15px; color: #75655a; cursor: pointer; }
+.auth-tab.active { background: #fff; color: #2b1a0e; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12); }
+.auth-frame { width: 100%; height: min(60vh, 520px); border: 0; background: transparent; }
+
+/* Pages shown inside the modal (?embed=1): hide header/footer, flatten the card */
+.embed body { background: transparent; }
+.embed .site-header, .embed .footer { display: none; }
+.embed .register-hero { padding: 0; margin: 0; width: 100%; grid-template-columns: 1fr; }
+.embed .register-card { box-shadow: none; border: 0; background: transparent; padding: 4px 2px; }
+.embed .register-card > h2 { display: none; }
+@media (max-width: 650px) { .auth-box { padding: 24px 18px 14px; } }
+/* keep the desktop two-column rows inside the modal */
+.embed .register-card .form-two { flex-direction: row; gap: 12px; }
+.embed .register-card .form-two .form-label { margin: 14px 0 6px; }

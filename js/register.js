@@ -145,7 +145,8 @@ function init() {
     } else el.textContent = brand.mark;
   });
   $$("[data-brand-name]").forEach(el => el.innerHTML = `${esc(brand.name)}<span class="brand-green">${esc(brand.accent)}</span>`);
-  $("footer-tagline").textContent = CONFIG.tagline;
+  const tagline = $("footer-tagline");
+  if (tagline) tagline.textContent = CONFIG.tagline;
   $("faculty").innerHTML = '<option value="">Select faculty</option>' + CONFIG.faculties.map(f => `<option>${esc(f)}</option>`).join("");
   $("academic-year").innerHTML = '<option value="">Select year</option>' + CONFIG.years.map(y => `<option>${esc(y)}</option>`).join("");
 }

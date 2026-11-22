@@ -54,8 +54,6 @@
       ${link(homeHash('#home'), 'Home', onHome)}
       ${link(url(PAGES.menu), 'Menu', isActive(PAGES.menu))}
       ${link(url(PAGES.orders), 'Orders', isActive(PAGES.orders))}
-      ${link(url(PAGES.register), 'Register', isActive(PAGES.register))}
-      ${link(url(PAGES.login), 'Login', isActive(PAGES.login))}
       ${link(url(PAGES.contact), 'Contact Us', isActive(PAGES.contact))}
     </nav>
     ${withActions ? `
@@ -93,4 +91,72 @@
   document.querySelectorAll('[data-site-footer]').forEach((el) => {
     el.outerHTML = footerHTML;
   });
+
+  // ---- Account modal (opened by the profile icon): Sign In / Register ----
+  const AUTH_TEXT = {
+    login: ['Welcome Back', 'Sign in with your student ID or email to access your account'],
+    register: ['Create your account', 'Register once to order from any Ruhuna canteen'],
+  };
+  let authModal = null;
+
+  function buildAuthModal() {
+    const wrap = document.createElement('div');
+    wrap.className = 'auth-backdrop';
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-modal', 'true');
+    wrap.setAttribute('aria-labelledby', 'auth-title');
+    wrap.innerHTML = `
+      <div class="auth-box">
+        <button type="button" class="auth-close" aria-label="Close">&times;</button>
+        <h2 id="auth-title"></h2>
+        <p class="auth-sub"></p>
+        <div class="auth-tabs">
+          <button type="button" class="auth-tab" data-tab="login">Sign In</button>
+          <button type="button" class="auth-tab" data-tab="register">Register</button>
+        </div>
+        <iframe class="auth-frame" title="Account"></iframe>
+      </div>`;
+    document.body.appendChild(wrap);
+    wrap.addEventListener('click', (e) => { if (e.target === wrap) closeAuth(); });
+    wrap.querySelector('.auth-close').addEventListener('click', closeAuth);
+    wrap.querySelectorAll('.auth-tab').forEach((b) => b.addEventListener('click', () => setAuthTab(b.dataset.tab)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAuth(); });
+    return wrap;
+  }
+
+  function setAuthTab(tab) {
+    const frame = authModal.querySelector('.auth-frame');
+    authModal.querySelector('#auth-title').textContent = AUTH_TEXT[tab][0];
+    authModal.querySelector('.auth-sub').textContent = AUTH_TEXT[tab][1];
+    authModal.querySelectorAll('.auth-tab').forEach((b) => b.classList.toggle('active', b.dataset.tab === tab));
+    const target = url(PAGES[tab]) + '?embed=1';
+    if (frame.getAttribute('src') !== target) frame.setAttribute('src', target);
+  }
+
+  function openAuth(tab) {
+    if (!authModal) authModal = buildAuthModal();
+    setAuthTab(tab || 'login');
+    authModal.classList.add('show');
+    document.body.classList.add('auth-open');
+  }
+  function closeAuth() {
+    if (!authModal) return;
+    authModal.classList.remove('show');
+    document.body.classList.remove('auth-open');
+  }
+
+  document.querySelectorAll('#profile-open').forEach((b) => b.addEventListener('click', () => openAuth('login')));
+  window.addEventListener('message', (e) => {
+    if (e.data && e.data.authTab && authModal) setAuthTab(e.data.authTab);
+  });
+
+  // Inside the modal (embed mode): switch tabs instead of navigating away
+  if (/[?&]embed=1/.test(location.search)) {
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href$="register.html"], a[href$="login.html"]');
+      if (!a) return;
+      e.preventDefault();
+      parent.postMessage({ authTab: a.getAttribute('href').endsWith('register.html') ? 'register' : 'login' }, '*');
+    });
+  }
 })();

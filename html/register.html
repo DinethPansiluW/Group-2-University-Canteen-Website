@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     
+<script>if(/[?&]embed=1/.test(location.search)){document.documentElement.classList.add('embed');var b=document.createElement('base');b.target='_top';document.head.appendChild(b);}</script>
 </head>
 <body>
     <header>
@@ -29,17 +30,6 @@
 
 <main>
   <section class="hero register-hero section-wrap" id="register">
-    <div class="hero-copy">
-      <span class="eyebrow"><span class="pulse"></span> <span class="si">රුහුණ විශ්වවිද්‍යාලය</span> · Student registration</span>
-      <h1>Create your account,<br><span>skip the queue.</span></h1>
-      <p>Register once with your student details and order from any Ruhuna canteen between lectures.</p>
-      <div class="perk-list">
-        <div class="perk"><span class="perk-icon">🍛</span><div><b>Order ahead</b><small>Pick your food before you reach the counter.</small></div></div>
-        <div class="perk"><span class="perk-icon">🧾</span><div><b>Track every order</b><small>Keep your Order IDs and see their status.</small></div></div>
-        <div class="perk"><span class="perk-icon">🥥</span><div><b>Check stock live</b><small>Know what is left before you walk over.</small></div></div>
-      </div>
-    </div>
-
     <div class="register-card">
       <h2>Student registration</h2>
       <p class="muted">All fields are required.</p>
@@ -94,9 +84,8 @@
         <small class="field-error" id="err-terms"></small>
 
         <button class="button button-green full submit-button" type="submit" id="register-submit">Create account</button>
-        <p class="switch-note">Already registered? <a class="text-link" href="home.html#home">Go to home</a></p>
+        <p class="switch-note">Already registered? <a class="text-link" href="login.html">Sign in</a></p>
       </form>
-      <p class="demo-note">Demo: registrations are saved in this browser (LocalStorage). For real accounts across devices, connect a backend and database.</p>
     </div>
   </section>
 </main>
@@ -108,7 +97,7 @@
     <h2 id="success-title">Registration complete!</h2>
     <p id="success-text"></p>
     <div class="success-details">Student ID <b id="success-id"></b></div>
-    <a class="button button-green full" id="success-continue" href="home.html#menu">Start ordering</a>
+    <a class="button button-green full" id="success-continue" href="menu.html">Start ordering</a>
     <button class="button button-light full" type="button" id="register-another">Register another student</button>
   </div>
 </div>
