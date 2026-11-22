@@ -95,8 +95,8 @@
 
   // ---- Account modal (opened by the profile icon): Sign In / Register ----
   const AUTH_TEXT = {
-    login: ['Welcome Back', 'Sign in with your student ID or email to access your account'],
-    register: ['Create your account', 'Register once to order from any Ruhuna canteen'],
+    login: ['Welcome Back', 'Sign in with your ID or email to access your account'],
+    register: ['Create your account', 'Students, lecturers, staff and parents can register to order from any Ruhuna canteen'],
   };
   let authModal = null;
 

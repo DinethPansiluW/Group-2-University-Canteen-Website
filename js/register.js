@@ -43,16 +43,43 @@ async function hashPassword(pw) {
   return "demo-" + btoa(encodeURIComponent(pw));
 }
 
+/* ---------- account type (student, lecturer, staff, parent) ---------- */
+const roleCfg = () => (window.ROLES[$("role").value] || window.ROLES.student);
+
+function applyRole() {
+  const key = $("role").value, r = roleCfg();
+  $("id-label").textContent = r.idLabel;
+  $("student-id").placeholder = r.idPlaceholder;
+  $("faculty-label").textContent = r.facultyLabel;
+
+  const field = id => $(id).closest("label");
+  field("student-id").hidden = !r.needsId;
+  field("academic-year").hidden = !r.needsYear;
+  field("faculty").hidden = !r.needsFaculty;
+  $("role-note").hidden = key !== "parent";
+
+  // faculty list differs for staff (adds departments); keep the choice if it still exists
+  const keep = $("faculty").value;
+  $("faculty").innerHTML = window.facultyOptions(key, CONFIG.faculties, esc);
+  if ([...$("faculty").options].some(o => o.value === keep)) $("faculty").value = keep;
+
+  // hidden fields must not show old errors
+  [["student-id", r.needsId], ["academic-year", r.needsYear], ["faculty", r.needsFaculty]].forEach(([id, on]) => {
+    if (!on) { $("err-" + id).textContent = ""; $(id).setAttribute("aria-invalid", "false"); }
+  });
+}
+
 /* ---------- validation ---------- */
 // Each rule returns an error message, or "" when the value is fine.
 const RULES = {
   "full-name": v => !v.trim() ? "Enter your full name."
     : !/^\p{L}[\p{L}\s.'-]{2,}$/u.test(v.trim()) ? "Use letters only, at least 3 characters." : "",
-  "student-id": v => !v.trim() ? "Enter your student ID."
+  "student-id": v => !roleCfg().needsId ? ""
+    : !v.trim() ? `Enter your ${roleCfg().idLabel}.`
     : !/^[A-Za-z0-9/-]{4,20}$/.test(v.trim()) ? "Use 4 to 20 letters, numbers, / or -."
     : users.some(u => u.studentId === normId(v)) ? "This student ID is already registered." : "",
-  "academic-year": v => v ? "" : "Select your academic year.",
-  "faculty": v => v ? "" : "Select your faculty.",
+  "academic-year": v => !roleCfg().needsYear || v ? "" : "Select your academic year.",
+  "faculty": v => !roleCfg().needsFaculty || v ? "" : "Select your faculty or department.",
   "email": v => !v.trim() ? "Enter your email address."
     : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? "Enter a valid email, like name@example.com."
     : users.some(u => u.email === v.trim().toLowerCase()) ? "This email is already registered." : "",
@@ -89,9 +116,10 @@ $("register-form").addEventListener("submit", async e => {
     const user = {
       id: "U" + Date.now().toString(36).toUpperCase(),
       fullName: $("full-name").value.trim(),
-      studentId: normId($("student-id").value),
-      year: $("academic-year").value,
-      faculty: $("faculty").value,
+      role: $("role").value,
+      studentId: roleCfg().needsId ? normId($("student-id").value) : window.makeGuestId(users.map(u => u.studentId)),
+      year: roleCfg().needsYear ? $("academic-year").value : "",
+      faculty: roleCfg().needsFaculty ? $("faculty").value : "",
       email: $("email").value.trim().toLowerCase(),
       phone: normPhone($("phone").value),
       passwordHash: await hashPassword($("password").value),
@@ -103,7 +131,7 @@ $("register-form").addEventListener("submit", async e => {
     // Sign the new customer in straight away (same session as login.js)
     try {
       const session = JSON.stringify({
-        id: user.id, fullName: user.fullName, studentId: user.studentId,
+        id: user.id, role: user.role, fullName: user.fullName, studentId: user.studentId,
         faculty: user.faculty, year: user.year, signedInAt: new Date().toLocaleString()
       });
       localStorage.setItem("ruhuna_active_user_v1", session);
@@ -112,8 +140,10 @@ $("register-form").addEventListener("submit", async e => {
     try { if (window.parent !== window) parent.postMessage({ authDone: true }, "*"); } catch {}
 
     $("success-text").textContent = `Welcome, ${user.fullName.split(/\s+/)[0]}. Your account is ready and you are signed in.`;
+    $("success-id-label").textContent = user.role === "parent" ? "Your ID (or sign in with your email)" : roleCfg().idLabel;
     $("success-id").textContent = user.studentId;
     $("register-form").reset();
+    applyRole();
     $$("#register-form [aria-invalid]").forEach(el => el.setAttribute("aria-invalid", "false"));
     setPasswordVisibility(false);
     showModal("success-modal");
@@ -138,6 +168,7 @@ function setPasswordVisibility(on) {
 }
 $("show-password").addEventListener("change", e => setPasswordVisibility(e.target.checked));
 
+$("role").addEventListener("change", applyRole);
 $("register-another").addEventListener("click", () => { showModal("success-modal", false); $("full-name").focus(); });
 $("success-modal").addEventListener("click", e => { if (e.target === $("success-modal")) showModal("success-modal", false); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") showModal("success-modal", false); });
@@ -158,7 +189,7 @@ function init() {
   $$("[data-brand-name]").forEach(el => el.innerHTML = `${esc(brand.name)}<span class="brand-green">${esc(brand.accent)}</span>`);
   const tagline = $("footer-tagline");
   if (tagline) tagline.textContent = CONFIG.tagline;
-  $("faculty").innerHTML = '<option value="">Select faculty</option>' + CONFIG.faculties.map(f => `<option>${esc(f)}</option>`).join("");
+  applyRole();
   $("academic-year").innerHTML = '<option value="">Select year</option>' + CONFIG.years.map(y => `<option>${esc(y)}</option>`).join("");
 }
 init();

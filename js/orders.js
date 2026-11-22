@@ -98,7 +98,7 @@
       <dl class="kv">
         <dt>Status</dt><dd><span class="chip ${chipClass(o.status)}">${esc(chipText(o.status))}</span></dd>
         <dt>Payment</dt><dd><span class="chip ok">Paid</span> ${esc(o.payment)}</dd>
-        <dt>Student</dt><dd>${esc(o.student)} (${esc(o.studentId)})</dd>
+        <dt>Customer</dt><dd>${esc(o.student)} (${esc(o.studentId)})</dd>
         <dt>Pickup at</dt><dd>${esc(o.canteen)}</dd>
       </dl>`;
     $("detail-backdrop").classList.add("show");

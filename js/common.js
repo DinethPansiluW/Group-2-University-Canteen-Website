@@ -19,8 +19,8 @@ document.body.insertAdjacentHTML("beforeend", `
   <button class="close-button modal-x" data-close="checkout-modal" aria-label="Close">×</button>
   <h2>Confirm &amp; pay</h2><p class="muted">One canteen per order. Payment is required to place the order.</p>
   <form id="checkout-form" autocomplete="off" novalidate>
-    <label class="form-label">Student name<input id="student-name" required placeholder="Your name"></label>
-    <label class="form-label">Student ID<input id="student-id" required placeholder="Your university ID"></label>
+    <label class="form-label">Name<input id="student-name" required placeholder="Your name"></label>
+    <label class="form-label">ID<input id="student-id" required placeholder="Your ID (student, employee or parent ID)"></label>
     <label class="form-label">Pickup canteen<select id="pickup-canteen" disabled></select></label>
     <div class="pay-box">
       <div class="pay-title">💳 Pay by card <span class="pay-demo">Demo</span></div>
@@ -697,7 +697,7 @@ const showModal = (id, on = true) =>
 
 
 
-/* When a customer is signed in, pre-fill the checkout name and student ID.
+/* When a customer is signed in, pre-fill the checkout name and ID.
    They can still edit both fields (e.g. when ordering for a friend). */
 function fillFromAccount() {
 
@@ -811,7 +811,7 @@ $("checkout-form").addEventListener("submit", e => {
   const sid = $("student-id").value.trim();
 
   if (!name || !sid) {
-    $("pay-error").textContent = "Please enter your name and student ID.";
+    $("pay-error").textContent = "Please enter your name and ID.";
     return;
   }
 

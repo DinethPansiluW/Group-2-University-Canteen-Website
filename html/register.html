@@ -31,32 +31,43 @@
 <main>
   <section class="hero register-hero section-wrap" id="register">
     <div class="register-card">
-      <h2>Student registration</h2>
-      <p class="muted">All fields are required.</p>
+      <h2>Create your account</h2>
+      <p class="muted">Students, lecturers, staff and parents can all register. All fields are required.</p>
       <form id="register-form" novalidate>
+        <label class="form-label" for="role">I am a
+          <select id="role" name="role">
+            <option value="student">Student</option>
+            <option value="lecturer">Lecturer / Academic staff</option>
+            <option value="admin">Administrative staff</option>
+            <option value="staff">Other campus staff</option>
+            <option value="parent">Parent / Guardian</option>
+          </select>
+        </label>
+        <small class="field-hint" id="role-note" hidden>No university ID needed. We give you an ID automatically, and you can sign in with your email.</small>
+
         <label class="form-label" for="full-name">Full name
           <input id="full-name" name="fullName" autocomplete="name" placeholder="e.g. Nimali Perera" aria-describedby="err-full-name">
           <small class="field-error" id="err-full-name"></small>
         </label>
 
         <div class="form-two">
-          <label class="form-label" for="student-id">Student ID
+          <label class="form-label" for="student-id"><span id="id-label">Student ID</span>
             <input id="student-id" name="studentId" autocomplete="off" placeholder="e.g. SC/2022/12345" aria-describedby="err-student-id">
             <small class="field-error" id="err-student-id"></small>
           </label>
-          <label class="form-label" for="academic-year">Academic year
+          <label class="form-label" for="academic-year"><span>Academic year</span>
             <select id="academic-year" name="year" aria-describedby="err-academic-year"></select>
             <small class="field-error" id="err-academic-year"></small>
           </label>
         </div>
 
-        <label class="form-label" for="faculty">Faculty
+        <label class="form-label" for="faculty"><span id="faculty-label">Faculty</span>
           <select id="faculty" name="faculty" aria-describedby="err-faculty"></select>
           <small class="field-error" id="err-faculty"></small>
         </label>
 
         <div class="form-two">
-          <label class="form-label" for="email">University email
+          <label class="form-label" for="email">Email address
             <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-describedby="err-email">
             <small class="field-error" id="err-email"></small>
           </label>
@@ -96,13 +107,14 @@
     <div class="success-icon" aria-hidden="true">✓</div>
     <h2 id="success-title">Registration complete!</h2>
     <p id="success-text"></p>
-    <div class="success-details">Student ID <b id="success-id"></b></div>
+    <div class="success-details"><span id="success-id-label">Student ID</span> <b id="success-id"></b></div>
     <a class="button button-green full" id="success-continue" href="menu.html">Start ordering</a>
-    <button class="button button-light full" type="button" id="register-another">Register another student</button>
+    <button class="button button-light full" type="button" id="register-another">Register another person</button>
   </div>
 </div>
 
 <div class="toast" id="toast" role="status"></div>
+<script src="../js/roles.js"></script>
 <script src="../js/register.js"></script>
 <div data-site-footer></div>
 

@@ -44,17 +44,20 @@
           <input id="pf-fullname" maxlength="80">
           <span class="pf-err" id="pf-err-fullname"></span>
         </label>
-        <label class="pf-field">Student ID
+        <label class="pf-field">Account type
+          <input id="pf-role" readonly>
+        </label>
+        <label class="pf-field"><span id="pf-id-label">Student ID</span>
           <input id="pf-studentid" readonly>
         </label>
-        <label class="pf-field">University email
+        <label class="pf-field">Email address
           <input id="pf-email" readonly>
         </label>
         <label class="pf-field">Mobile number
           <input id="pf-phone" inputmode="tel" placeholder="07X XXX XXXX" maxlength="16">
           <span class="pf-err" id="pf-err-phone"></span>
         </label>
-        <label class="pf-field">Faculty
+        <label class="pf-field"><span id="pf-faculty-label">Faculty</span>
           <select id="pf-faculty"></select>
         </label>
         <label class="pf-field">Academic year
@@ -67,7 +70,7 @@
           <textarea id="pf-notes" rows="3" maxlength="200" placeholder="e.g. no peanuts, vegetarian"></textarea>
         </label>
       </div>
-      <p class="pf-hint">Student ID and email cannot be changed.</p>
+      <p class="pf-hint">Your ID, account type and email cannot be changed.</p>
       <div class="pf-actions">
         <button type="submit" class="pf-btn pf-btn-primary">Save changes</button>
         <span class="pf-saved" id="pf-saved" role="status"></span>
@@ -86,6 +89,7 @@
 <script src="../shared/layout.js"></script>
 <script src="../js/common.js"></script>
 <script>initCommon();</script>
+<script src="../js/roles.js"></script>
 <script src="../js/profile.js"></script>
 </body>
 </html>

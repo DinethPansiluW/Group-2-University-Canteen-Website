@@ -1,4 +1,4 @@
-//* ====== Keep this block in sync with CONFIG in home.js / register.js ====== */
+/* ====== Keep this block in sync with CONFIG in home.js / register.js ====== */
 const CONFIG = {
   brand: { name: "Taste of ", accent: "Ruhuna", mark: "../assets/ruhuna-2.png" },
   tagline: "University of Ruhuna · Matara, Southern Province"
@@ -7,18 +7,6 @@ const STORAGE = {
   users: "ruhuna_users_v1",
   session: "ruhuna_active_user_v1"
 };
-
-const DEMO_USERS = [
-  {
-    id: "U_DEMO_SC20221234",
-    fullName: "Admin Student",
-    studentId: "SC/2022/1234",
-    email: "sc20221234@ruh.ac.lk",
-    faculty: "Science",
-    year: "3rd year",
-    plainPassword: "admin"
-  }
-];
 
 const $ = id => document.getElementById(id);
 const $$ = sel => document.querySelectorAll(sel);
@@ -93,32 +81,6 @@ function validateInputs() {
   return idOk && pwOk;
 }
 
-async function findMatchingUser(rawId, rawPassword) {
-  const lookupId = normId(rawId);
-  const lookupEmail = normEmail(rawId);
-  const pwHash = await hashPassword(rawPassword);
-
-  const demoMatch = DEMO_USERS.find(u =>
-    (normId(u.studentId) === lookupId || normEmail(u.email) === lookupEmail) &&
-    rawPassword === u.plainPassword
-  );
-  if (demoMatch) {
-    return {
-      id: demoMatch.id,
-      fullName: demoMatch.fullName,
-      studentId: demoMatch.studentId,
-      faculty: demoMatch.faculty,
-      year: demoMatch.year
-    };
-  }
-
-  const users = loadUsers();
-  return users.find(u =>
-    (normId(u.studentId || "") === lookupId || normEmail(u.email || "") === lookupEmail) &&
-    u.passwordHash === pwHash
-  ) || null;
-}
-
 $("login-form").addEventListener("submit", async e => {
   e.preventDefault();
   if (!validateInputs()) return toast("Please enter your login details");
@@ -126,9 +88,16 @@ $("login-form").addEventListener("submit", async e => {
   const btn = $("login-submit");
   btn.disabled = true;
   try {
+    const users = loadUsers();
     const rawId = $("identifier").value.trim();
-    const rawPassword = $("password").value;
-    const matchedUser = await findMatchingUser(rawId, rawPassword);
+    const lookupId = normId(rawId);
+    const lookupEmail = normEmail(rawId);
+    const pwHash = await hashPassword($("password").value);
+
+    const matchedUser = users.find(u =>
+      (normId(u.studentId || "") === lookupId || normEmail(u.email || "") === lookupEmail) &&
+      u.passwordHash === pwHash
+    );
 
     if (!matchedUser) {
       setFieldError("password", "Invalid student ID/email or password.");
@@ -138,6 +107,7 @@ $("login-form").addEventListener("submit", async e => {
 
     const session = {
       id: matchedUser.id,
+      role: matchedUser.role || "student",
       fullName: matchedUser.fullName,
       studentId: matchedUser.studentId,
       faculty: matchedUser.faculty,

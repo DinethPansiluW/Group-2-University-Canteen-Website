@@ -62,8 +62,15 @@
   }
 
   function fillForm(user) {
+    const role = window.roleOf(user), key = user.role || "student";
     el("pf-name").textContent = user.fullName;
-    el("pf-sub").textContent = [user.studentId, user.faculty, user.year].filter(Boolean).join(" · ");
+    el("pf-sub").textContent = [role.label, user.studentId, user.faculty, user.year].filter(Boolean).join(" · ");
+    el("pf-role").value = role.label;
+    el("pf-id-label").textContent = role.idLabel;
+    el("pf-faculty-label").textContent = role.facultyLabel;
+    el("pf-faculty").closest("label").hidden = !role.needsFaculty;
+    el("pf-year").closest("label").hidden = !role.needsYear;
+    el("pf-faculty").innerHTML = window.facultyOptions(key, FACULTIES, esc);
     el("pf-fullname").value = user.fullName || "";
     el("pf-studentid").value = user.studentId || "";
     el("pf-email").value = user.email || "";
@@ -169,8 +176,8 @@
     const user = updateUser({
       fullName: name,
       phone: phone,
-      faculty: el("pf-faculty").value,
-      year: el("pf-year").value,
+      faculty: window.roleOf(currentUser()).needsFaculty ? el("pf-faculty").value : "",
+      year: window.roleOf(currentUser()).needsYear ? el("pf-year").value : "",
       favCanteen: el("pf-canteen").value,
       notes: el("pf-notes").value.trim()
     });
@@ -199,7 +206,6 @@
   });
 
   /* ---------- start ---------- */
-  el("pf-faculty").innerHTML = options(FACULTIES, "Select faculty");
   el("pf-year").innerHTML = options(YEARS, "Select year");
   const canteens = (typeof C !== "undefined" && Array.isArray(C)) ? C : [];
   el("pf-canteen").innerHTML = options(canteens, "No favourite yet");

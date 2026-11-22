@@ -46,6 +46,7 @@
 .pf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
 .pf-field { display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; font-weight: 700; color: #2b1a0e; }
 .pf-wide { grid-column: 1 / -1; }
+.pf-field[hidden] { display: none; }
 
 .pf-field input,
 .pf-field select,
