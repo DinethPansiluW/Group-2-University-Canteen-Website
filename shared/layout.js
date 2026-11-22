@@ -18,7 +18,7 @@
   const LOGO = 'assets/ruhuna-2.png'; 
   const LOGO_HEIGHT = 34;       
   const LOGO_HEIGHT_FOOTER = 30;
-  const FOOTER_TAGLINE = 'University of Ruhuna · Matara, Southern Province · Unofficial student project';
+  const FOOTER_TAGLINE = 'University of Ruhuna · Matara, Southern Province';
 
   const url = (p) => new URL(p, ROOT).href;
   const path = decodeURIComponent(location.pathname);

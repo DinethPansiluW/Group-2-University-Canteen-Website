@@ -67,7 +67,7 @@ const CONFIG = {
 
   brand: { name: "Taste of ", accent: "Ruhuna", mark: "../assets/ruhuna-2.png" },
 
-  tagline: "University of Ruhuna · Matara, Southern Province · Unofficial student project",
+  tagline: "University of Ruhuna · Matara, Southern Province",
 
   currency: "Rs.",
 
