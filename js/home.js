@@ -47,7 +47,7 @@ $("hero-search").addEventListener("submit", e => {
 
 document.title = `${CONFIG.brand.name}${CONFIG.brand.accent} | University of Ruhuna Canteens`;
 
-$("hero-count").textContent = `${C.length} canteens, 5 campuses`;
+$("hero-count").textContent = "5 canteens, 1 campus";
 
 $("today-date").textContent =
   new Date().toLocaleDateString(undefined, {
