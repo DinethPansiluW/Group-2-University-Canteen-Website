@@ -12,6 +12,7 @@
     register: 'html/register.html',
     login: 'html/login.html',
     contact: 'html/contact.html',
+    profile: 'html/profile.html',
   };
   const BRAND_NAME = 'Taste of Ruhuna';                       
   const BRAND_NAME_HTML = 'Taste of <span class="brand-green">Ruhuna</span>';  
@@ -145,9 +146,63 @@
     document.body.classList.remove('auth-open');
   }
 
-  document.querySelectorAll('#profile-open').forEach((b) => b.addEventListener('click', () => openAuth('login')));
+  // ---- Signed-in state (shared by every page) ----
+  const SESSION_KEY = 'ruhuna_active_user_v1';
+  const USERS_KEY = 'ruhuna_users_v1';
+  function readJSON(store, key) {
+    try { const raw = store.getItem(key); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+  }
+  function currentUser() {
+    const session = readJSON(sessionStorage, SESSION_KEY) || readJSON(localStorage, SESSION_KEY);
+    if (!session) return null;
+    const users = readJSON(localStorage, USERS_KEY) || [];
+    return users.filter((u) => u.id === session.id)[0] || null;
+  }
+  function initialsOf(name) {
+    const parts = String(name || '').trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return '?';
+    return (parts[0][0] + (parts.length > 1 ? parts[parts.length - 1][0] : '')).toUpperCase();
+  }
+  // Profile icon: plain icon when signed out, photo (or initials) when signed in
+  function updateProfileButton() {
+    const user = currentUser();
+    document.querySelectorAll('#profile-open').forEach((b) => {
+      b.classList.toggle('signed-in', !!user);
+      b.setAttribute('aria-label', user ? 'My profile' : 'Sign in');
+      b.title = user ? 'My profile' : 'Sign in';
+      const old = b.querySelector('.profile-avatar');
+      if (old) old.remove();
+      const svg = b.querySelector('svg');
+      if (user) {
+        const av = document.createElement('span');
+        av.className = 'profile-avatar';
+        if (user.photo) {
+          const img = document.createElement('img');
+          img.src = user.photo;
+          img.alt = '';
+          av.appendChild(img);
+        } else {
+          av.textContent = initialsOf(user.fullName);
+        }
+        b.appendChild(av);
+        if (svg) svg.style.display = 'none';
+      } else if (svg) {
+        svg.style.display = '';
+      }
+    });
+  }
+
+  document.querySelectorAll('#profile-open').forEach((b) => b.addEventListener('click', () => {
+    if (currentUser()) location.href = url(PAGES.profile);   // signed in -> profile page
+    else openAuth('login');                                  // signed out -> Sign In / Register popup
+  }));
+  updateProfileButton();
+  window.addEventListener('storage', updateProfileButton);
+  window.addEventListener('ruhuna-profile-updated', updateProfileButton);
+  window.openAuthModal = openAuth;
   window.addEventListener('message', (e) => {
     if (e.data && e.data.authTab && authModal) setAuthTab(e.data.authTab);
+    if (e.data && e.data.authDone) updateProfileButton();
   });
 
   // Inside the modal (embed mode): switch tabs instead of navigating away

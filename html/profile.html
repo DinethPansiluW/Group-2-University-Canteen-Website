@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | Taste of Ruhuna</title>
+<link rel="stylesheet" href="../shared/layout.css">
+<link rel="stylesheet" href="../css/home.css">
+<link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+<div data-site-header data-actions></div>
+
+<main class="section-wrap pf-page">
+
+  <!-- Shown when nobody is signed in -->
+  <section class="pf-card pf-guest" id="pf-guest" hidden>
+    <h1>You are not signed in</h1>
+    <p>Sign in or create an account to see your profile.</p>
+    <button type="button" class="pf-btn pf-btn-primary" id="pf-signin">Sign in / Register</button>
+  </section>
+
+  <!-- Shown when a customer is signed in -->
+  <section class="pf-card" id="pf-card" hidden>
+
+    <div class="pf-top">
+      <div class="pf-avatar" id="pf-avatar" aria-label="Profile photo"></div>
+      <div class="pf-ident">
+        <h1 id="pf-name"></h1>
+        <p class="pf-sub" id="pf-sub"></p>
+        <div class="pf-photo-actions">
+          <button type="button" class="pf-btn pf-btn-light" id="pf-change">Upload photo</button>
+          <button type="button" class="pf-btn pf-btn-ghost" id="pf-remove">Remove photo</button>
+          <input type="file" id="pf-photo" accept="image/*" hidden>
+        </div>
+        <p class="pf-hint">JPG or PNG. Your photo is saved in this browser only.</p>
+      </div>
+    </div>
+
+    <form id="pf-form" novalidate autocomplete="off">
+      <h2>My details</h2>
+      <div class="pf-grid">
+        <label class="pf-field">Full name
+          <input id="pf-fullname" maxlength="80">
+          <span class="pf-err" id="pf-err-fullname"></span>
+        </label>
+        <label class="pf-field">Student ID
+          <input id="pf-studentid" readonly>
+        </label>
+        <label class="pf-field">University email
+          <input id="pf-email" readonly>
+        </label>
+        <label class="pf-field">Mobile number
+          <input id="pf-phone" inputmode="tel" placeholder="07X XXX XXXX" maxlength="16">
+          <span class="pf-err" id="pf-err-phone"></span>
+        </label>
+        <label class="pf-field">Faculty
+          <select id="pf-faculty"></select>
+        </label>
+        <label class="pf-field">Academic year
+          <select id="pf-year"></select>
+        </label>
+        <label class="pf-field">Favourite canteen (optional)
+          <select id="pf-canteen"></select>
+        </label>
+        <label class="pf-field pf-wide">Allergies / dietary notes (optional)
+          <textarea id="pf-notes" rows="3" maxlength="200" placeholder="e.g. no peanuts, vegetarian"></textarea>
+        </label>
+      </div>
+      <p class="pf-hint">Student ID and email cannot be changed.</p>
+      <div class="pf-actions">
+        <button type="submit" class="pf-btn pf-btn-primary">Save changes</button>
+        <span class="pf-saved" id="pf-saved" role="status"></span>
+      </div>
+    </form>
+
+    <div class="pf-logout">
+      <button type="button" class="pf-btn pf-btn-danger" id="pf-logout">Log out</button>
+    </div>
+
+  </section>
+</main>
+
+<div data-site-footer></div>
+
+<script src="../shared/layout.js"></script>
+<script src="../js/common.js"></script>
+<script>initCommon();</script>
+<script src="../js/profile.js"></script>
+</body>
+</html>

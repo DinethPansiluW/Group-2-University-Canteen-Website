@@ -114,6 +114,7 @@ $("login-form").addEventListener("submit", async e => {
       signedInAt: new Date().toLocaleString()
     };
     saveSession(session, $("remember-me").checked);
+    try { if (window.parent !== window) parent.postMessage({ authDone: true }, "*"); } catch {}
 
     const firstName = (matchedUser.fullName || "Student").split(/\s+/)[0];
     $("success-text").textContent = `Welcome back, ${firstName}. You are signed in to Ruhuna Eats.`;

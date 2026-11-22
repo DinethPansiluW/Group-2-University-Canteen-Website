@@ -1,0 +1,101 @@
+/* Profile page. All classes start with pf- so they cannot clash with home.css */
+
+.pf-page { padding: 40px 0 70px; }
+
+.pf-card {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1.5px solid #eadfce;
+  border-radius: 22px;
+  padding: 32px;
+  box-shadow: 0 8px 24px rgba(122, 74, 30, 0.07);
+}
+.pf-card[hidden] { display: none; }
+
+.pf-card h1,
+.pf-card h2 { font-family: "Bricolage Grotesque", sans-serif; color: #2b1a0e; margin: 0; }
+.pf-card h1 { font-size: 30px; line-height: 1.15; }
+.pf-card h2 { font-size: 20px; margin-bottom: 16px; }
+
+/* ---- photo + name ---- */
+.pf-top { display: flex; align-items: center; gap: 28px; padding-bottom: 28px; margin-bottom: 28px; border-bottom: 1px solid #eadfce; }
+
+.pf-avatar {
+  flex: none;
+  width: 124px;
+  height: 124px;
+  border-radius: 50%;
+  background: #f4ecdf;
+  border: 3px solid #e3a93a;
+  color: #7a4a1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 800 40px "Bricolage Grotesque", sans-serif;
+  overflow: hidden;
+}
+.pf-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.pf-ident { min-width: 0; }
+.pf-sub { margin: 6px 0 14px; color: #75655a; font-size: 14px; }
+.pf-photo-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.pf-hint { margin: 10px 0 0; font-size: 12.5px; color: #75655a; }
+
+/* ---- form ---- */
+.pf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+.pf-field { display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; font-weight: 700; color: #2b1a0e; }
+.pf-wide { grid-column: 1 / -1; }
+
+.pf-field input,
+.pf-field select,
+.pf-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font: 500 15px "DM Sans", sans-serif;
+  color: #2b1a0e;
+  background: #fffdf8;
+  border: 1.5px solid #eadfce;
+  border-radius: 10px;
+}
+.pf-field textarea { resize: vertical; }
+.pf-field input[readonly] { background: #f4ecdf; color: #75655a; cursor: not-allowed; }
+.pf-field input:focus,
+.pf-field select:focus,
+.pf-field textarea:focus { outline: none; border-color: #7a4a1e; }
+.pf-field input[aria-invalid="true"] { border-color: #b3372c; }
+.pf-err { min-height: 0; font-size: 12.5px; font-weight: 500; color: #b3372c; }
+
+.pf-actions { display: flex; align-items: center; gap: 14px; margin-top: 20px; }
+.pf-saved { font-size: 14px; font-weight: 700; color: #1a7a2e; }
+
+/* ---- buttons ---- */
+.pf-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 20px;
+  font: 700 14px "DM Sans", sans-serif;
+  cursor: pointer;
+}
+.pf-btn-primary { background: #3b2210; color: #fff; padding: 13px 26px; }
+.pf-btn-primary:hover { background: #2b1a0e; }
+.pf-btn-light { background: #f4ecdf; color: #2b1a0e; }
+.pf-btn-light:hover { background: #ecdfcb; }
+.pf-btn-ghost { background: transparent; color: #75655a; text-decoration: underline; padding-left: 8px; padding-right: 8px; }
+
+/* ---- log out: always the last thing on the page ---- */
+.pf-logout { margin-top: 36px; padding-top: 24px; border-top: 1px solid #eadfce; }
+.pf-btn-danger { width: 100%; background: #fff; color: #b3372c; border: 1.5px solid #e6b8b2; padding: 14px; font-size: 15px; }
+.pf-btn-danger:hover { background: #b3372c; color: #fff; border-color: #b3372c; }
+
+/* ---- not signed in ---- */
+.pf-guest { text-align: center; padding: 48px 32px; }
+.pf-guest p { color: #75655a; margin: 10px 0 22px; }
+
+@media (max-width: 650px) {
+  .pf-card { padding: 22px 18px; border-radius: 18px; }
+  .pf-top { flex-direction: column; text-align: center; gap: 18px; }
+  .pf-photo-actions { justify-content: center; }
+  .pf-grid { grid-template-columns: 1fr; }
+}

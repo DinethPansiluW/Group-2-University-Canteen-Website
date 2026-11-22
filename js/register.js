@@ -100,7 +100,18 @@ $("register-form").addEventListener("submit", async e => {
     users.push(user);
     if (!save()) { users.pop(); return; }
 
-    $("success-text").textContent = `Welcome, ${user.fullName.split(/\s+/)[0]}. Your Ruhuna Eats account is ready.`;
+    // Sign the new customer in straight away (same session as login.js)
+    try {
+      const session = JSON.stringify({
+        id: user.id, fullName: user.fullName, studentId: user.studentId,
+        faculty: user.faculty, year: user.year, signedInAt: new Date().toLocaleString()
+      });
+      localStorage.setItem("ruhuna_active_user_v1", session);
+      sessionStorage.setItem("ruhuna_active_user_v1", session);
+    } catch {}
+    try { if (window.parent !== window) parent.postMessage({ authDone: true }, "*"); } catch {}
+
+    $("success-text").textContent = `Welcome, ${user.fullName.split(/\s+/)[0]}. Your account is ready and you are signed in.`;
     $("success-id").textContent = user.studentId;
     $("register-form").reset();
     $$("#register-form [aria-invalid]").forEach(el => el.setAttribute("aria-invalid", "false"));

@@ -697,6 +697,27 @@ const showModal = (id, on = true) =>
 
 
 
+/* When a customer is signed in, pre-fill the checkout name and student ID.
+   They can still edit both fields (e.g. when ordering for a friend). */
+function fillFromAccount() {
+
+  try {
+    const raw = sessionStorage.getItem("ruhuna_active_user_v1") ||
+                localStorage.getItem("ruhuna_active_user_v1");
+    if (!raw) return;
+
+    const session = JSON.parse(raw);
+    const users = JSON.parse(localStorage.getItem("ruhuna_users_v1") || "[]");
+    const user = users.find(u => u.id === session.id);
+    if (!user) return;
+
+    $("student-name").value = user.fullName || "";
+    $("student-id").value = user.studentId || "";
+  } catch {}
+
+}
+
+
 function checkout() {
 
   cleanCart();
@@ -719,6 +740,8 @@ function checkout() {
 
   $("pickup-canteen").innerHTML =
     `<option>${esc(canteens[0])}</option>`;
+
+  fillFromAccount();
 
   showDrawer(false);
   showModal("checkout-modal");
